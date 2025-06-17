@@ -51,7 +51,8 @@ logs/
 *.log
 
 # Test files
-test_*.py
+# Don't ignore test files in tests directory
+!backend/tests/test_*.py
 *.test.js
 *.spec.js
 
