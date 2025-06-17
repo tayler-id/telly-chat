@@ -1,77 +1,54 @@
-# Telly Chat - AI-Powered YouTube Transcript Assistant
+# Telly Chat
 
-A ChatGPT-like interface that integrates with the Telly agent to extract YouTube transcripts and generate actionable plans from video content.
+An AI-powered chat application with YouTube transcript extraction capabilities and advanced agent orchestration.
 
 ## Features
 
-- 🎥 **YouTube Transcript Extraction**: Automatically extract transcripts from any YouTube video
-- 🤖 **AI-Powered Conversations**: Chat naturally with an AI assistant that understands video content
-- 📋 **Action Plan Generation**: Create structured, actionable plans from video tutorials
-- 🔧 **Tool Transparency**: See when the AI is using tools to fetch transcripts
-- 💬 **Real-time Streaming**: Get responses as they're generated
-- 📱 **Modern UI**: Clean, responsive interface similar to ChatGPT
+- 🎥 YouTube transcript extraction using Supadata API
+- 💬 Real-time streaming chat interface
+- 🤖 LangChain-powered agent orchestration
+- 📝 Action plan generation from video content
+- 💾 Export transcripts and action plans as markdown
+- 🔄 Session management with conversation history
 
-## Architecture
+## Tech Stack
 
-```
-telly-chat/
-├── frontend/          # Next.js React application
-│   ├── components/    # React components
-│   ├── pages/        # Next.js pages
-│   └── services/     # API services
-└── backend/          # FastAPI Python backend
-    ├── agents/       # LangChain agents and tools
-    ├── models/       # Data models
-    └── services/     # Business logic
-```
+### Backend
+- FastAPI for REST API and WebSocket support
+- LangChain for agent orchestration
+- Anthropic Claude / OpenAI GPT for language models
+- Redis for session storage (optional)
+- Python 3.11+
 
-## Prerequisites
+### Frontend
+- Next.js with TypeScript
+- React for UI components
+- Tailwind CSS for styling
+- Server-Sent Events for real-time streaming
 
-- Python 3.8+
-- Node.js 16+
-- Anthropic API key (or OpenAI API key)
-- Supadata API key (for YouTube transcripts)
+## Installation
 
-## Quick Start
-
-1. **Clone and navigate to the project:**
-   ```bash
-   cd /Users/tramsay/Desktop/_ORGANIZED/01_Development/telly-chat
-   ```
-
-2. **Set up environment variables:**
-   
-   Edit `backend/.env`:
-   ```env
-   ANTHROPIC_API_KEY=your_anthropic_api_key
-   SUPADATA_API_KEY=your_supadata_api_key
-   MODEL_PROVIDER=anthropic  # or "openai"
-   ```
-
-3. **Run the application:**
-   ```bash
-   ./start.sh
-   ```
-
-   This will:
-   - Set up Python virtual environment
-   - Install all dependencies
-   - Start the backend server (http://localhost:8000)
-   - Start the frontend dev server (http://localhost:3000)
-
-4. **Open your browser:**
-   Navigate to http://localhost:3000
-
-## Manual Setup
+### Prerequisites
+- Python 3.11+
+- Node.js 18+
+- Redis (optional, for persistent sessions)
 
 ### Backend Setup
 
 ```bash
 cd backend
-python3 -m venv venv
+python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
-python main.py
+```
+
+Create a `.env` file in the backend directory:
+```env
+ANTHROPIC_API_KEY=your_api_key_here
+SUPADATA_API_KEY=your_supadata_key_here
+# Or use OpenAI
+# OPENAI_API_KEY=your_openai_key_here
+# MODEL_PROVIDER=openai
 ```
 
 ### Frontend Setup
@@ -79,93 +56,48 @@ python main.py
 ```bash
 cd frontend
 npm install
-npm run dev
 ```
 
-## Usage
+Create a `.env.local` file in the frontend directory:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
 
-1. **Share a YouTube URL**: Simply paste a YouTube URL in the chat
-2. **Ask questions**: "Can you get the transcript for [YouTube URL]?"
-3. **Generate action plans**: "Create an action plan from this video"
-4. **Follow-up questions**: Ask about specific parts of the video
+## Running the Application
 
-## API Endpoints
-
-- `GET /` - Health check
-- `POST /chat` - Send a chat message (non-streaming)
-- `GET /chat/stream` - Stream chat responses (SSE)
-- `WebSocket /ws` - Real-time chat via WebSocket
-- `GET /sessions` - List chat sessions
-- `GET /sessions/{id}` - Get specific session
-- `DELETE /sessions/{id}` - Delete session
-
-## Technology Stack
-
-### Backend
-- **FastAPI** - Modern Python web framework
-- **LangChain** - AI agent orchestration
-- **Anthropic/OpenAI** - LLM providers
-- **Supadata API** - YouTube transcript extraction
-
-### Frontend
-- **Next.js** - React framework
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling
-- **React Markdown** - Message rendering
-- **Server-Sent Events** - Real-time streaming
-
-## Configuration
-
-### Model Provider
-
-You can switch between Anthropic and OpenAI by changing `MODEL_PROVIDER` in the backend `.env` file.
-
-### Custom Models
-
-Specify custom models in the environment:
-- Anthropic: Default is `claude-3-5-sonnet-20241022`
-- OpenAI: Default is `gpt-4-turbo-preview`
-
-## Development
-
-### Backend Development
-
+### Start Backend
 ```bash
 cd backend
-source venv/bin/activate
-python -m uvicorn main:app --reload
+python main.py
 ```
 
-### Frontend Development
-
+### Start Frontend
 ```bash
 cd frontend
 npm run dev
 ```
 
-### Adding New Tools
+Visit http://localhost:3000 to use the application.
 
-1. Create a new tool in `backend/agents/tools/`
-2. Follow the LangChain `BaseTool` interface
-3. Register the tool in `ChatAgent._initialize_tools()`
+## Usage
 
-## Troubleshooting
+1. Enter a YouTube URL in the chat interface
+2. The AI agent will extract the transcript and generate an action plan
+3. Click "Save Transcript & Action Plan" to download as markdown
+4. Continue chatting to ask questions about the video content
 
-### Backend won't start
-- Check Python version: `python3 --version` (need 3.8+)
-- Verify API keys in `.env`
-- Check port 8000 is available
+## Architecture
 
-### Frontend won't start
-- Check Node version: `node --version` (need 16+)
-- Clear Next.js cache: `rm -rf .next`
-- Check port 3000 is available
+The application uses a modular architecture with:
+- **Agent System**: LangChain-based agents with tool support
+- **Memory Management**: Conversation history and session persistence
+- **Tool Framework**: Extensible tool system for adding new capabilities
+- **Streaming**: Real-time response streaming using SSE
 
-### Connection issues
-- Ensure both backend and frontend are running
-- Check CORS settings if deploying to different domains
-- Verify API_URL in frontend matches backend address
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-MIT
+MIT License
