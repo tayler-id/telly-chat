@@ -4,12 +4,21 @@ An AI-powered chat application with YouTube transcript extraction capabilities a
 
 ## Features
 
+### Core Features (Always Available)
 - 🎥 YouTube transcript extraction using Supadata API
 - 💬 Real-time streaming chat interface
 - 🤖 LangChain-powered agent orchestration
 - 📝 Action plan generation from video content
 - 💾 Export transcripts and action plans as markdown
 - 🔄 Session management with conversation history
+
+### Advanced Features (Optional)
+- 🧠 **AI Memory System**: Short-term, long-term, and episodic memory
+- 🔀 **Workflow Engine**: Complex task orchestration with LangGraph
+- 🧵 **Threading System**: Multi-context conversation management
+- 📄 **Document Parsing**: Support for PDF, HTML, Markdown, JSON
+- 🔍 **Smart Chunking**: Semantic and recursive text chunking
+- 🚀 **Pipe Agents**: Stream processing and agent chaining
 
 ## Tech Stack
 
@@ -33,13 +42,30 @@ An AI-powered chat application with YouTube transcript extraction capabilities a
 - Node.js 18+
 - Redis (optional, for persistent sessions)
 
-### Backend Setup
+### Quick Setup
+
+```bash
+# Install core features only
+python setup.py
+
+# Install with all advanced features
+python setup.py --with-optional
+```
+
+### Manual Setup
+
+#### Backend Setup
 
 ```bash
 cd backend
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
+
+# Core dependencies only
+pip install -r requirements-core.txt
+
+# Optional: Install advanced features
+pip install -r requirements-optional.txt
 ```
 
 Create a `.env` file in the backend directory:
