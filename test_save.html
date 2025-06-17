@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Save Functionality</title>
+</head>
+<body>
+    <h1>Test YouTube Transcript Save</h1>
+    <button id="testBtn">Test Save Full Transcript</button>
+    <div id="status"></div>
+    
+    <script>
+        document.getElementById('testBtn').addEventListener('click', async () => {
+            const status = document.getElementById('status');
+            status.textContent = 'Fetching transcript...';
+            
+            try {
+                const response = await fetch('http://localhost:8000/youtube/transcript?url=' + 
+                    encodeURIComponent('https://www.youtube.com/watch?v=dQw4w9WgXcQ'), {
+                    method: 'POST'
+                });
+                
+                const data = await response.json();
+                console.log('Response:', data);
+                
+                if (data.success) {
+                    // Create and download file
+                    const content = `# YouTube Video Analysis\n\n` +
+                                  `**Date:** ${new Date().toLocaleDateString()}\n\n` +
+                                  data.content;
+                    
+                    const blob = new Blob([content], { type: 'text/markdown' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'test-transcript.md';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    
+                    status.textContent = 'Success! File downloaded. Content length: ' + content.length;
+                } else {
+                    status.textContent = 'Error: ' + (data.error || 'Unknown error');
+                }
+            } catch (error) {
+                status.textContent = 'Error: ' + error.message;
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html>
