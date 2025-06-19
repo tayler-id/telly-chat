@@ -1,0 +1,60 @@
+{
+  "id": "episode_cff0695e308f4e19a00ac01ef886550b",
+  "type": "conversation",
+  "title": "Chat: you should have memory tools now...",
+  "start_time": "2025-06-19T12:17:34.921102",
+  "end_time": "2025-06-19T14:00:48.079970",
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "acb5bfc9-9417-4ad4-b2bc-6cbe84f2bfb5",
+    "thread_id": null,
+    "initial_message": "you should have memory tools now"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-19T12:17:34.921131",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: you should have memory tools now...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T12:17:34.923094",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "you should have memory tools now"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T12:17:43.174268",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "I apologize, but I actually don't have any memory tools in my current configuration. Looking at the available functions provided to me, I only have access to one tool:\n\n1. `youtube_transcript` - For extracting transcripts from YouTube videos and generating action plans\n\nThis tool allows me to:\n- Extract transcripts from YouTube videos\n- Generate action plans from video content\n- Analyze video content\n\nIf you'd like to work with YouTube content, I'd be happy to help with that. To use this tool, you would need to provide a YouTube video URL. \n\nWould you like to:\n- Extract a transcript from a specific YouTube video?\n- Get an action plan based on a video's content?\n- Analyze any particular YouTube content?\n\nJust share a YouTube URL and I'll help you with any of these tasks!",
+        "memories_used": 1,
+        "context_tokens": 0
+      },
+      "impact_score": 0.6
+    }
+  ],
+  "outcome": "auto_closed",
+  "success_metrics": {},
+  "memories_created": [
+    "ltm_b1548e5232714e78a7acd2fee1385b98"
+  ],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "acb5bfc9-9417-4ad4-b2bc-6cbe84f2bfb5"
+  }
+}

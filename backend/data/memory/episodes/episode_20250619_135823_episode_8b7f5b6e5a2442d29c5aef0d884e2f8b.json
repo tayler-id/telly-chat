@@ -1,0 +1,58 @@
+{
+  "id": "episode_8b7f5b6e5a2442d29c5aef0d884e2f8b",
+  "type": "conversation",
+  "title": "Chat: https://www.youtube.com/watch?v=IOPuHLIcrSI...",
+  "start_time": "2025-06-19T13:58:23.396332",
+  "end_time": null,
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "07003b65-93e7-4be0-9a99-ea452f294edd",
+    "thread_id": null,
+    "initial_message": "https://www.youtube.com/watch?v=IOPuHLIcrSI"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-19T13:58:23.396341",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: https://www.youtube.com/watch?v=IOPuHLIcrSI...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T13:58:23.397407",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "https://www.youtube.com/watch?v=IOPuHLIcrSI"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T13:58:53.381542",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "### \ud83d\udcf9 Video Information\n- **Video ID:** `IOPuHLIcrSI`\n- **Language:** en\n\n### \ud83d\udcdd Transcript\n*Showing first 1500 characters of transcript:*\n\n```\nHi there. I'm Alex, a Cloud Code support agent. How can I help you today? Uh, hi Alex. Uh, I have a question about Claude Code. So, I'm about to log in now, but my question is about the slash commands, right? There's a slash command called compact. Uh, I don't quite understand what this do. Can you explain this? Yes, I can certainly help with that. The compact slash command is designed to help you manage the conversation history within cloud code. It essentially streamlines the conversation by focusing on the key information. It's useful for keeping your Okay, so what you saw there was my uh club code support AI voice agent. So we are actually using the new 11 Labs conversational AI to set this up and it's pretty easy to set up. So today I thought I could just walk you through how I did this. We're not going to go into deep details, but I'm just going to show you an overview of how I kind of set this up. And we have something else that uh at after this conversation is done, we can import this and we can do some analysis on it. So uh we're just going to start here. So on the 11 labs conversational AI, we have a tab called agents, right? And here we can kind of configure our agent. But there's one more thing. You saw me holding the phone, right? So to get this uh phone number here, this is connected to Twilio. So, you will need an account on Twilio to actually have this uh that people can call with their phone, like a real phone number if you want that. But, uh there are other...\n```\n\n\ud83d\udcca **Full transcript:** 12,803 characters \u2022 2,451 words\n\n\ud83d\udcbe **Click 'Save Transcript & Action Plan' below to download the complete transcript**\n\n---\n\n### \ud83d\udccb Action Plan\n\n11 Labs Conversational AI Implementation Plan\n\nSummary:\nThis video demonstrates how to set up a customer support AI agent using 11 Labs conversational AI and Twilio integration. The system allows for phone-based AI support with knowledge base integration and conversation analysis capabilities.\n\nPrerequisites:\n- 11 Labs account\n- Twilio account (for phone integration)\n- Documentation/knowledge base content\n- Basic understanding of AI models\n- Text editor for knowledge base preparation\n\nStep-by-Step Action Plan:\n\n1. Initial Setup (30 minutes)\n- Create 11 Labs account\n- Create Twilio account\n- Gather documentation for knowledge base\nTools needed: Web browser, credit card for accounts\n\n2. Knowledge Base Preparation (1-2 hours)\n- Collect relevant documentation\n- Create organized text file(s)\n- Review and clean up content\nTools needed: Text editor, source documentation\n\n3. 11 Labs Agent Configuration (45 minutes)\n- Navigate to Agents tab\n- Select language\n- Write system prompt\n- Upload knowledge base file\n- Configure voice settings (Alexandra voice)\n- Select LLM (e.g., Gemini 2.0 flashlight)\nTools needed: 11 Labs dashboard\n\n4. Twilio Integration (1 hour)\n- Set up Twilio phone number\n- Configure TTS output format\n- Connect Twilio to 11 Labs\nTools needed: Twilio dashboard\n\n5. Testing & Optimization (2 hours)\n- Make test calls\n- Review conversation transcripts\n- Adjust system prompt if needed\n- Test different scenarios\nTools needed: Phone, monitoring dashboard\n\n6. Analysis Pipeline Setup (Optional) (2 hours)\n- Configure conversation polling\n- Set up OpenAI integration\n- Create analysis templates\nTools needed: API documentation, development environment\n\nExpected Outcomes:\n- Functional AI support agent\n- Phone-based customer support system\n- Searchable conversation history\n- Conversation analysis capabilities\n\nCommon Pitfalls to Avoid:\n1. Insufficient knowledge base content\n2. Poor system prompt definition\n3. Wrong TTS output format selection\n4. Not testing edge cases\n5. Overlooking cost management for API calls\n6. Not monitoring conversation quality\n\nAdditional Notes:\n- Start with a small knowledge base and expand\n- Regular monitoring of conversation quality\n- Keep costs in mind when selecting LLM models\n- Backup important configurations\n- Document custom implementations\n\nTotal Implementation Time: 7-8 hours (basic setup)\n\nRemember to adjust the plan based on your specific needs and resources available.",
+        "memories_used": 1,
+        "context_tokens": 0
+      },
+      "impact_score": 0.6
+    }
+  ],
+  "outcome": null,
+  "success_metrics": {},
+  "memories_created": [],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "07003b65-93e7-4be0-9a99-ea452f294edd"
+  }
+}

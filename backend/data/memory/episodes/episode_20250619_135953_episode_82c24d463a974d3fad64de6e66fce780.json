@@ -1,0 +1,58 @@
+{
+  "id": "episode_82c24d463a974d3fad64de6e66fce780",
+  "type": "conversation",
+  "title": "Chat: tell me more about Twilio intergration...",
+  "start_time": "2025-06-19T13:59:53.124771",
+  "end_time": null,
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "07003b65-93e7-4be0-9a99-ea452f294edd",
+    "thread_id": null,
+    "initial_message": "tell me more about Twilio intergration"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-19T13:59:53.124812",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: tell me more about Twilio intergration...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T13:59:53.126923",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "tell me more about Twilio intergration"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T14:00:00.881756",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "I notice you're asking about Twilio integration, but you haven't shared a specific YouTube video or resource to analyze. To provide you with accurate and detailed information, I would need:\n\n1. A specific YouTube video URL about Twilio integration that you'd like me to analyze, or\n2. A more specific question about what aspect of Twilio integration you're interested in learning about\n\nI can help you by:\n- Analyzing a tutorial video about Twilio integration\n- Extracting key points from technical presentations about Twilio\n- Creating an action plan from video content about implementing Twilio\n\nPlease share:\n- A YouTube URL for a specific video about Twilio integration, or\n- Clarify what specific aspects of Twilio integration you're interested in learning about\n\nOnce you provide either of these, I can use my tools to give you detailed information and insights about Twilio integration.",
+        "memories_used": 1,
+        "context_tokens": 0
+      },
+      "impact_score": 0.6
+    }
+  ],
+  "outcome": null,
+  "success_metrics": {},
+  "memories_created": [],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "07003b65-93e7-4be0-9a99-ea452f294edd"
+  }
+}

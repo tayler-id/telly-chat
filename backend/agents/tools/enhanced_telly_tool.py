@@ -3,6 +3,7 @@
 import sys
 import os
 import re
+import json
 from typing import Dict, Any, Optional, Tuple
 from langchain.tools import BaseTool
 from pydantic import BaseModel, Field
@@ -356,6 +357,19 @@ This video appears to contain AI-generated content. Take the information with ap
             
             response_parts.append("")
             response_parts.append(generated_content)
+            
+            # Add hidden metadata section with full transcript
+            response_parts.append("")
+            response_parts.append("<!-- METADATA_START")
+            response_parts.append(json.dumps({
+                "full_transcript": transcript,
+                "title": title,
+                "video_id": video_id,
+                "language": language,
+                "content_type": content_type,
+                "ai_generated": ai_generated
+            }))
+            response_parts.append("METADATA_END -->")
             
             return "\n".join(response_parts)
             

@@ -1,0 +1,60 @@
+{
+  "id": "episode_d56c75709ba748d2b216359a0a6000fe",
+  "type": "conversation",
+  "title": "Chat: https://www.youtube.com/watch?v=qgn4YX2SXk0...",
+  "start_time": "2025-06-19T09:48:07.344118",
+  "end_time": "2025-06-19T12:17:09.946548",
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "d64b864a-944b-40ef-ad55-d032f8b0c9a2",
+    "thread_id": null,
+    "initial_message": "https://www.youtube.com/watch?v=qgn4YX2SXk0"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-19T09:48:07.344162",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: https://www.youtube.com/watch?v=qgn4YX2SXk0...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T09:48:07.347287",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "https://www.youtube.com/watch?v=qgn4YX2SXk0"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T09:48:33.603716",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "### \ud83d\udcf9 Video Information\n- **Video ID:** `qgn4YX2SXk0`\n- **Language:** en\n\n### \ud83d\udcdd Transcript\n*Showing first 1500 characters of transcript:*\n\n```\nIf you can't measure it, you can't improve it. Today, I'm going to show you how to do model evaluations specifically rag evaluations. For example, if you're running a business and you have a chatbot communicating with your customers, you want to make sure that the information that is giving the customers is accurate and it can cause big problems if it's not. And also, as you iterate on your AI stack you want to make sure you're heading in the right direction. You want to make sure you're actually improving. And again, having these benchmarks in place and being able to actually see the improvement in the metrics as you iterate is important. And I'm going to show you all of this step by step on Amazon Bedrock. Amazon Bedrock is a fully managed service where you can choose from the best models on the market, including ones from Amazon, but also from Meta, Anthropic, and others. And it comes with a ton of really useful features that are especially useful when you are building out a production AI implementation. They have agents, they have guardrails for safety, prompt routing, rag knowledge bases, prompt management, and so much more. Amazon is partnering with me on this video. They wanted me to show you a step-by-step tutorial on how to do sophisticated model and rag evaluations. So, let me tell you about the use case we're going to be doing today. We are hotel owners and we have this hotel policy document. We're going to be creating a chatbot that allows our users, any potential...\n```\n\n\ud83d\udcca **Full transcript:** 19,013 characters \u2022 3,522 words\n\n\ud83d\udcbe **Click 'Save Transcript & Action Plan' below to download the complete transcript**\n\n---\n\n### \ud83d\udccb Action Plan\n\nRAG Evaluation Implementation Plan\n\nSummary:\nThis video teaches how to set up and perform RAG (Retrieval Augmented Generation) evaluations for AI chatbots using Amazon Bedrock. It focuses on measuring and improving the accuracy of AI responses using a hotel policy document as an example case study.\n\nPrerequisites:\n- AWS Account\n- Administrative access\n- Basic understanding of AWS services\n- Source documents for knowledge base\n- Test prompts and ground truth answers\n\nDetailed Action Plan:\n\n1. AWS Account Setup (30 minutes)\n   - Create AWS account if needed\n   - Create IAM user with administrative access\n   - Enable console access and set password\n   - Save login credentials securely\n\n2. S3 Bucket Creation (45 minutes)\n   - Create three S3 buckets:\n     a. Document bucket (for hotel policy)\n     b. Prompts bucket\n     c. Evaluation storage bucket\n   - Configure CORS settings for each bucket\n   - Create evaluation folder in storage bucket\n\n3. Document Preparation (1 hour)\n   - Format knowledge base documents\n   - Upload documents to document bucket\n   - Verify successful upload and accessibility\n\n4. Prompt Development (2 hours)\n   - Create test prompts\n   - Develop ground truth answers\n   - Format according to required structure\n   - Upload to prompts bucket\n\n5. Evaluation Setup (1 hour)\n   - Configure evaluation parameters\n   - Set up metrics tracking\n   - Establish baseline measurements\n\nResources Needed:\n- AWS Console access\n- Source documents\n- Test prompts and answers\n- CORS configuration template\n- Evaluation metrics framework\n\nExpected Outcomes:\n- Functional RAG evaluation system\n- Ability to measure chatbot accuracy\n- Benchmark metrics for improvements\n- System for ongoing performance monitoring\n\nCommon Pitfalls to Avoid:\n1. Insufficient IAM permissions\n2. Incorrect CORS configuration\n3. Improper document formatting\n4. Incomplete test prompts\n5. Missing ground truth answers\n6. Not establishing clear baseline metrics\n\nNote: The video transcript appears to be cut off, so some final implementation details may be missing from this plan. Consider consulting the full video for complete instructions.",
+        "memories_used": 1,
+        "context_tokens": 0
+      },
+      "impact_score": 0.6
+    }
+  ],
+  "outcome": "auto_closed",
+  "success_metrics": {},
+  "memories_created": [
+    "ltm_6985906c13434ee38593b5757878082c"
+  ],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "d64b864a-944b-40ef-ad55-d032f8b0c9a2"
+  }
+}

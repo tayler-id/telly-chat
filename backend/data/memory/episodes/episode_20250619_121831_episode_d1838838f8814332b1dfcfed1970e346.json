@@ -1,0 +1,58 @@
+{
+  "id": "episode_d1838838f8814332b1dfcfed1970e346",
+  "type": "conversation",
+  "title": "Chat: hello...",
+  "start_time": "2025-06-19T12:18:31.324136",
+  "end_time": null,
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "548163ee-e03b-423c-a446-e30556a96053",
+    "thread_id": null,
+    "initial_message": "hello"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-19T12:18:31.324222",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: hello...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T12:18:31.325900",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "hello"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T12:18:36.815258",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "Hello! I'm an AI assistant that can help you analyze YouTube videos and their content. I can:\n\n- Extract transcripts from YouTube videos\n- Generate action plans from video content\n- Help analyze and understand video content\n- Answer questions about videos\n\nTo get started, just share a YouTube video URL with me, and I'll help you understand its content. What would you like to know?",
+        "memories_used": 1,
+        "context_tokens": 0
+      },
+      "impact_score": 0.6
+    }
+  ],
+  "outcome": null,
+  "success_metrics": {},
+  "memories_created": [],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "548163ee-e03b-423c-a446-e30556a96053"
+  }
+}

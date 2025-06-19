@@ -1,15 +1,16 @@
 """Simplified chat agent with core functionality only"""
 
 import os
+import re
+import json
 from typing import List, Dict, Any, Optional, AsyncGenerator
 from langchain_anthropic import ChatAnthropic
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
-import json
 
-from .tools.enhanced_telly_tool import get_enhanced_telly_tool
-from ..memory.transcript_store import TranscriptStore
-from ..models.schemas import Message, MessageRole
+from agents.tools.enhanced_telly_tool import get_enhanced_telly_tool
+from memory.transcript_store import TranscriptStore
+from models.schemas import Message, MessageRole
 
 
 SYSTEM_PROMPT = """You are a helpful AI assistant with advanced YouTube video analysis capabilities.
@@ -151,28 +152,59 @@ class SimpleChatAgent:
                 # Save to transcript store if available
                 if self.transcript_store:
                     try:
-                        # Parse the tool result to extract info
-                        lines = tool_result.split('\n')
-                        title = "YouTube Video"
-                        transcript = ""
-                        action_plan = ""
+                        # First try to extract metadata with full transcript
+                        metadata_match = re.search(r'<!-- METADATA_START\n(.*?)\nMETADATA_END -->', tool_result, re.DOTALL)
                         
-                        in_transcript = False
-                        in_action_plan = False
+                        if metadata_match:
+                            # Extract full transcript from metadata
+                            metadata_json = metadata_match.group(1)
+                            metadata = json.loads(metadata_json)
+                            
+                            title = metadata.get('title', 'YouTube Video')
+                            transcript = metadata.get('full_transcript', '')
+                            video_id = metadata.get('video_id', '')
+                            language = metadata.get('language', 'unknown')
+                            
+                            # Extract action plan from the visible content
+                            action_plan = ""
+                            lines = tool_result.split('\n')
+                            in_action_plan = False
+                            
+                            for line in lines:
+                                if any(marker in line for marker in ["### 🎓 Tutorial Guide", "### 📰 News Summary", 
+                                                                     "### ⭐ Review Summary", "### 📚 Educational Notes", 
+                                                                     "### 📋 Action Plan"]):
+                                    in_action_plan = True
+                                elif line.startswith("<!-- METADATA_START"):
+                                    break
+                                elif in_action_plan and line.strip():
+                                    action_plan += line + "\n"
                         
-                        for line in lines:
-                            if "**Title:**" in line:
-                                title = line.replace("**Title:**", "").strip()
-                            elif "### 📝" in line and "Transcript" in line:
-                                in_transcript = True
-                                in_action_plan = False
-                            elif "### 📋 Action Plan" in line:
-                                in_transcript = False
-                                in_action_plan = True
-                            elif in_transcript and line.strip():
-                                transcript += line + "\n"
-                            elif in_action_plan and line.strip():
-                                action_plan += line + "\n"
+                        else:
+                            # Fallback to old parsing method
+                            lines = tool_result.split('\n')
+                            title = "YouTube Video"
+                            transcript = ""
+                            action_plan = ""
+                            
+                            in_transcript = False
+                            in_action_plan = False
+                            
+                            for line in lines:
+                                if "**Title:**" in line:
+                                    title = line.replace("**Title:**", "").strip()
+                                elif "### 📝" in line and "Transcript" in line:
+                                    in_transcript = True
+                                    in_action_plan = False
+                                elif any(marker in line for marker in ["### 🎓", "### 📰", "### ⭐", "### 📚", "### 📋"]):
+                                    in_transcript = False
+                                    in_action_plan = True
+                                elif in_transcript and line.strip() and not line.startswith("*Showing first"):
+                                    # Skip metadata lines
+                                    if not ("```" in line or "📊 **Full transcript:**" in line):
+                                        transcript += line + "\n"
+                                elif in_action_plan and line.strip():
+                                    action_plan += line + "\n"
                         
                         # Save if we have content
                         if transcript:
@@ -186,9 +218,13 @@ class SimpleChatAgent:
                     except Exception as e:
                         print(f"Failed to save transcript: {e}")
                 
-                # Add tool result to context for response
-                messages.append(AIMessage(content=f"I've extracted the transcript. Here's what I found:\n\n{tool_result}"))
-                messages.append(HumanMessage(content="Based on this transcript, please provide your analysis or answer my original question."))
+                # The tool result already contains the complete analysis and action plan
+                # Just return it directly
+                yield {"type": "text", "content": tool_result}
+                return
+            
+            except Exception as e:
+                yield {"type": "error", "content": f"Error processing YouTube URL: {str(e)}"}
         
         # Generate response
         if stream:
@@ -221,28 +257,57 @@ class SimpleChatAgent:
             # Extract transcript
             tool_result = await self.telly_tool.arun(url)
             
-            # Parse result
-            lines = tool_result.split('\n')
-            title = "YouTube Video"
-            transcript = ""
-            action_plan = ""
+            # First try to extract metadata with full transcript
+            metadata_match = re.search(r'<!-- METADATA_START\n(.*?)\nMETADATA_END -->', tool_result, re.DOTALL)
             
-            in_transcript = False
-            in_action_plan = False
+            if metadata_match:
+                # Extract full transcript from metadata
+                metadata_json = metadata_match.group(1)
+                metadata = json.loads(metadata_json)
+                
+                title = metadata.get('title', 'YouTube Video')
+                transcript = metadata.get('full_transcript', '')
+                
+                # Extract action plan from the visible content
+                action_plan = ""
+                lines = tool_result.split('\n')
+                in_action_plan = False
+                
+                for line in lines:
+                    if any(marker in line for marker in ["### 🎓 Tutorial Guide", "### 📰 News Summary", 
+                                                         "### ⭐ Review Summary", "### 📚 Educational Notes", 
+                                                         "### 📋 Action Plan"]):
+                        in_action_plan = True
+                    elif line.startswith("<!-- METADATA_START"):
+                        break
+                    elif in_action_plan and line.strip():
+                        action_plan += line + "\n"
             
-            for line in lines:
-                if "**Title:**" in line:
-                    title = line.replace("**Title:**", "").strip()
-                elif "### 📝" in line and "Transcript" in line:
-                    in_transcript = True
-                    in_action_plan = False
-                elif "### 📋 Action Plan" in line:
-                    in_transcript = False
-                    in_action_plan = True
-                elif in_transcript and line.strip():
-                    transcript += line + "\n"
-                elif in_action_plan and line.strip():
-                    action_plan += line + "\n"
+            else:
+                # Fallback to old parsing method
+                lines = tool_result.split('\n')
+                title = "YouTube Video"
+                transcript = ""
+                action_plan = ""
+                
+                in_transcript = False
+                in_action_plan = False
+                
+                for line in lines:
+                    if "**Title:**" in line:
+                        title = line.replace("**Title:**", "").strip()
+                    elif "### 📝" in line and "Transcript" in line:
+                        in_transcript = True
+                        in_action_plan = False
+                    elif any(marker in line for marker in ["### 🎓", "### 📰", "### ⭐", "### 📚", "### 📋"]):
+                        in_transcript = False
+                        in_action_plan = True
+                    elif in_transcript and line.strip() and not line.startswith("*Showing first"):
+                        # Skip metadata lines
+                        if not ("```" in line or "📊 **Full transcript:**" in line):
+                            transcript += line + "\n"
+                    elif in_action_plan and line.strip():
+                        action_plan += line + "\n"
             
             # Generate summary
             summary_prompt = f"Summarize this video in 2-3 sentences: {title}\n\n{transcript[:500]}..."

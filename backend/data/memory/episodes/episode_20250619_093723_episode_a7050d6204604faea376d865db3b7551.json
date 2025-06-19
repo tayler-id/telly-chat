@@ -1,0 +1,48 @@
+{
+  "id": "episode_a7050d6204604faea376d865db3b7551",
+  "type": "conversation",
+  "title": "Chat: hello...",
+  "start_time": "2025-06-19T09:37:23.740457",
+  "end_time": "2025-06-19T09:43:44.341596",
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "7ad080c5-470f-4e6c-aa83-ec63c7b5fe20",
+    "thread_id": null,
+    "initial_message": "hello"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-19T09:37:23.740498",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: hello...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T09:37:23.742223",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "hello"
+      },
+      "impact_score": 0.5
+    }
+  ],
+  "outcome": "auto_closed",
+  "success_metrics": {},
+  "memories_created": [
+    "ltm_f8fc6faebd644e01b0ce4bdda2ed8322"
+  ],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "7ad080c5-470f-4e6c-aa83-ec63c7b5fe20"
+  }
+}

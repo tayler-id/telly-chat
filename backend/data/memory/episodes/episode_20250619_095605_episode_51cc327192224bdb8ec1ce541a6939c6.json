@@ -1,0 +1,60 @@
+{
+  "id": "episode_51cc327192224bdb8ec1ce541a6939c6",
+  "type": "conversation",
+  "title": "Chat: https://www.youtube.com/watch?v=UIntXBP--gI...",
+  "start_time": "2025-06-19T09:56:05.807280",
+  "end_time": "2025-06-19T12:17:34.319209",
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "d64b864a-944b-40ef-ad55-d032f8b0c9a2",
+    "thread_id": null,
+    "initial_message": "https://www.youtube.com/watch?v=UIntXBP--gI"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-19T09:56:05.807319",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: https://www.youtube.com/watch?v=UIntXBP--gI...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T09:56:05.808340",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "https://www.youtube.com/watch?v=UIntXBP--gI"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T09:56:35.012025",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "### \ud83d\udcf9 Video Information\n- **Video ID:** `UIntXBP--gI`\n- **Language:** en\n\n### \ud83d\udcdd Transcript\n*Showing first 1500 characters of transcript:*\n\n```\nHi everyone, welcome to another episode of Hands-On with AI agents. And in this episode, we'll be building a rag agent using Google's ADK and vector [Music] search. In the first part of the video, we'll be saying what vector search is and what are the different kinds of embeddings. And in the second part, we'll be diving deep into building the agent as a rag agent. And to do that, we have Cass here. Hi, Cass. Hi s hi I'm K de developer advocate from the crowd AI team I focus on the building demos and blog post and documents for their vector search embedings and ADK lovely let's get started then so first let's think about the typical design of rag or retrieval augmented generation systems for the e-commerce chat bots here we have the user query can you find the pixel uh Google pixel 9 then LLM receives this query and decide it needs more informations to provide an accurate answer and suppress harsh issues. So it uses the the retrieval back end like a vector search and uh uh get the result from the for the query and then generator the answer to the user. That's the typical the rack system setup. Now uh let's look at some challenges for the usual rack systems specifically multimodel search and keyword search. This example shows a user asking can you find cups with dancing figures and the SKU or product number is one to three ABC receives this query and thinks how do I found the images and keyword search. This query is more complex than the previous one because the it involves th...\n```\n\n\ud83d\udcca **Full transcript:** 24,025 characters \u2022 4,359 words\n\n\ud83d\udcbe **Click 'Save Transcript & Action Plan' below to download the complete transcript**\n\n---\n\n### \ud83d\udccb Action Plan\n\nRAG Agent Implementation Plan using Google's ADK and Vector Search\n\nSUMMARY:\nThis video teaches how to build a RAG (Retrieval Augmented Generation) agent using Google's ADK and vector search capabilities. It focuses on advanced vector search practices including multimodal search, hybrid search, and task-type embeddings, specifically for e-commerce applications.\n\nPREREQUISITES:\n- Google Cloud Platform account\n- Access to Vertex AI APIs\n- Basic understanding of embeddings and LLMs\n- Python programming knowledge\n- Access to Google's ADK\n\nSTEP-BY-STEP ACTION PLAN:\n\n1. Setup Environment (1-2 hours)\n   - Install Google Cloud SDK\n   - Configure GCP project\n   - Enable necessary APIs (Vertex AI, Vector Search)\n   - Set up authentication credentials\n\n2. Implement Basic Vector Search (2-3 hours)\n   - Create vector search index\n   - Configure embedding dimensions\n   - Set up basic similarity search functionality\n   - Test with simple queries\n   Tools needed: Google Cloud Console, Python\n\n3. Implement Multimodal Search (3-4 hours)\n   - Set up multimodal embeddings using Vertex AI API\n   - Configure shared embedding space for text and images\n   - Implement text-to-image and image-to-text search capabilities\n   Tools needed: Vertex AI Embeddings API\n\n4. Add Hybrid Search Capability (2-3 hours)\n   - Implement keyword search functionality\n   - Set up sparse embeddings\n   - Combine semantic and keyword search\n   - Configure result ranking\n   Tools needed: Vector search index, embedding models\n\n5. Implement Task-Type Embeddings (2-3 hours)\n   - Configure pre-trained dual encoder models\n   - Set up task-specific embeddings\n   - Implement question-answering functionality\n   Tools needed: Vertex AI task-type embeddings\n\n6. Integration and Testing (3-4 hours)\n   - Combine all components\n   - Test with various query types\n   - Optimize search results\n   - Performance testing\n\nEXPECTED OUTCOMES:\n- Functional RAG agent capable of:\n  * Multimodal search across text and images\n  * Hybrid search combining semantic and keyword capabilities\n  * Improved search relevance using task-type embeddings\n  * Handling complex queries and recommendations\n\nCOMMON PITFALLS TO AVOID:\n1. Relying solely on simple similarity search\n2. Ignoring keyword search capabilities\n3. Not considering different query types\n4. Overlooking the importance of task-specific embeddings\n5. Poor integration of multiple search types\n6. Not testing with diverse query scenarios\n\nTotal Estimated Implementation Time: 13-19 hours\n\nNote: Times may vary based on experience level and familiarity with the tools.",
+        "memories_used": 1,
+        "context_tokens": 0
+      },
+      "impact_score": 0.6
+    }
+  ],
+  "outcome": "auto_closed",
+  "success_metrics": {},
+  "memories_created": [
+    "ltm_5cc82ecdcd3c4ccb9ff2c3407d14048b"
+  ],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "d64b864a-944b-40ef-ad55-d032f8b0c9a2"
+  }
+}

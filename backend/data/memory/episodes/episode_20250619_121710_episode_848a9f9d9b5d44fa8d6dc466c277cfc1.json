@@ -1,0 +1,60 @@
+{
+  "id": "episode_848a9f9d9b5d44fa8d6dc466c277cfc1",
+  "type": "conversation",
+  "title": "Chat: can i ask you questions about the video...",
+  "start_time": "2025-06-19T12:17:10.664220",
+  "end_time": "2025-06-19T13:59:51.950825",
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "acb5bfc9-9417-4ad4-b2bc-6cbe84f2bfb5",
+    "thread_id": null,
+    "initial_message": "can i ask you questions about the video"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-19T12:17:10.664290",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: can i ask you questions about the video...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T12:17:10.667061",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "can i ask you questions about the video"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T12:17:18.855074",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "I can help you analyze YouTube videos and answer questions about their content, but I'll need you to share the YouTube video URL first. Once you provide a video link, I can:\n\n1. Extract the full transcript\n2. Generate an action plan if requested\n3. Answer specific questions about the content\n4. Help analyze key points and themes\n\nPlease share the YouTube video URL you'd like to discuss and I'll be happy to help!\n\n*Note: The URL should be in standard YouTube format, like:*\n- `https://www.youtube.com/watch?v=VIDEOID` or \n- `https://youtu.be/VIDEOID`",
+        "memories_used": 1,
+        "context_tokens": 0
+      },
+      "impact_score": 0.6
+    }
+  ],
+  "outcome": "auto_closed",
+  "success_metrics": {},
+  "memories_created": [
+    "ltm_b4b6bf62987a4256814abf7f4f4fe36b"
+  ],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "acb5bfc9-9417-4ad4-b2bc-6cbe84f2bfb5"
+  }
+}

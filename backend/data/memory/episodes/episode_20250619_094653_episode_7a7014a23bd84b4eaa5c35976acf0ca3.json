@@ -1,0 +1,60 @@
+{
+  "id": "episode_7a7014a23bd84b4eaa5c35976acf0ca3",
+  "type": "conversation",
+  "title": "Chat: https://www.youtube.com/watch?v=TMuWnREtyBo...",
+  "start_time": "2025-06-19T09:46:53.143926",
+  "end_time": "2025-06-19T12:15:23.854903",
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "d64b864a-944b-40ef-ad55-d032f8b0c9a2",
+    "thread_id": null,
+    "initial_message": "https://www.youtube.com/watch?v=TMuWnREtyBo"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-19T09:46:53.143994",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: https://www.youtube.com/watch?v=TMuWnREtyBo...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T09:46:53.147514",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "https://www.youtube.com/watch?v=TMuWnREtyBo"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-19T09:47:26.390097",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "### \ud83d\udcf9 Video Information\n- **Video ID:** `TMuWnREtyBo`\n- **Language:** en\n\n### \ud83d\udcdd Transcript\n*Showing first 1500 characters of transcript:*\n\n```\n[Music] [Applause] Hi, welcome to another video. So, I have told you guys before about how you can make single agentic workflows. Like you can start from an input, drag and drop a bunch of blocks and create the AI workflow that you want. But what if you could make an AI agent that can take in all your workflows and use those workflows as tools? Basically, it would be an AI agent on top of all your workflows. One you can chat with and it can supply the input and everything to the workflow when necessary just like a tool. It can use it to achieve stuff for you and you can keep increasing these workflows day by day as well. Well, that's what I have today with a new feature launched by vector shift called vector shift agents. Now, I have told you guys about vector shift before where it allows you to create a ton of AI workflows by dragging and dropping a bunch of integrations and making AI workflows that just work for you. You can check out my previous videos on it, but the newly launched feature is agents. You can see this feature if you log in and then on the sidebar you'll see the agents option. Once you click it, you'll get the option to create agents. Just hit it and it will ask you for a name. Just give it one and in a bit it will show you this interface. Now it can look a bit complex at first but let me explain how you can use it as well. So what happens is that you can give it an input or multiple inputs if you wish to do that and it can give you output or multiple output...\n```\n\n\ud83d\udcca **Full transcript:** 7,312 characters \u2022 1,427 words\n\n\ud83d\udcbe **Click 'Save Transcript & Action Plan' below to download the complete transcript**\n\n---\n\n### \ud83d\udccb Action Plan\n\nAI Workflow Agent Implementation Plan\n===========================================\n\nBrief Summary:\n-------------\nThe video demonstrates how to create an AI agent using VectorShift that can manage and execute multiple AI workflows as tools. This agent can interact conversationally and automatically trigger appropriate workflows based on user input, essentially functioning as an orchestrator for multiple AI processes.\n\nPrerequisites:\n-------------\n- VectorShift account\n- Existing knowledge bases (if using knowledge base features)\n- API access to desired AI models (GPT-4, Gemini, etc.)\n- Basic understanding of workflow creation\n\nStep-by-Step Action Plan:\n------------------------\n\n1. Initial Setup (15 minutes)\n   - Log into VectorShift\n   - Navigate to Agents section\n   - Create new agent with descriptive name\n   - Configure LLM settings (select provider and model)\n\n2. Configure Basic Agent Settings (20 minutes)\n   - Set up input/output structure\n   - Enable input filtration if needed\n   - Configure advanced settings for custom models\n   - Test basic functionality\n\n3. Create Required Workflows/Pipelines (45 minutes per pipeline)\n   - Design workflow logic\n   - Add necessary blocks (knowledge base, LLM, etc.)\n   - Configure connections between blocks\n   - Test pipeline independently\n   - Document pipeline purpose and inputs/outputs\n\n4. Tool Integration (30 minutes)\n   - Add knowledge base tools\n   - Integrate external services (Notion, Google Calendar, etc.)\n   - Add created pipelines as tools\n   - Define clear descriptions for each tool\n   - Configure tool inputs/outputs\n\n5. Agent Testing and Refinement (1 hour)\n   - Test agent with various inputs\n   - Verify tool calling accuracy\n   - Check output quality\n   - Adjust tool descriptions if needed\n   - Test edge cases\n\n6. Deployment (30 minutes)\n   - Version your agent\n   - Deploy to production\n   - Document deployment settings\n   - Set up monitoring (if available)\n\nExpected Outcomes:\n----------------\n- Functional AI agent that can:\n  - Handle natural language inputs\n  - Select and execute appropriate workflows\n  - Integrate with multiple tools and services\n  - Provide structured outputs\n  - Scale with additional workflows\n\nCommon Pitfalls to Avoid:\n------------------------\n1. Unclear tool descriptions leading to incorrect tool selection\n2. Insufficient testing before deployment\n3. Over-complicated workflow structures\n4. Poor input/output structure definition\n5. Neglecting to version control agents and pipelines\n6. Not considering API usage costs\n7. Insufficient error handling in workflows\n\nResources Needed:\n---------------\n- VectorShift platform access\n- API keys for chosen LLM providers\n- Documentation for integrated services\n- Test datasets\n- Knowledge base content (if applicable)\n\nThis plan assumes basic familiarity with AI workflows and may need adjustment based on specific use cases and requirements.",
+        "memories_used": 1,
+        "context_tokens": 0
+      },
+      "impact_score": 0.6
+    }
+  ],
+  "outcome": "auto_closed",
+  "success_metrics": {},
+  "memories_created": [
+    "ltm_92e9a0768f5c4ec5a2f956413f37e2b8"
+  ],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "d64b864a-944b-40ef-ad55-d032f8b0c9a2"
+  }
+}
