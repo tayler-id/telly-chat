@@ -1,0 +1,163 @@
+{
+  "episodes": {
+    "episode_7c373b6dd41b": {
+      "file": "./data/memory/episodes/episode_20250618_132511_episode_7c373b6dd41b.json",
+      "title": "Chat: Hello! I'm learning about Python programming...",
+      "type": "learning",
+      "start_time": "2025-06-18T13:25:11.081642",
+      "end_time": "2025-06-18T13:38:11.081642",
+      "is_active": false,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 6
+    },
+    "episode_d173fed4c649": {
+      "file": "./data/memory/episodes/episode_20250618_122511_episode_d173fed4c649.json",
+      "title": "Chat: Can you help me debug this React component?...",
+      "type": "problem_solving",
+      "start_time": "2025-06-18T12:25:11.081931",
+      "end_time": "2025-06-18T12:38:11.081931",
+      "is_active": false,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 6
+    },
+    "episode_4dd3e188c2ec": {
+      "file": "./data/memory/episodes/episode_20250618_112511_episode_4dd3e188c2ec.json",
+      "title": "Chat: Analyze this YouTube video about machine learning...",
+      "type": "task_completion",
+      "start_time": "2025-06-18T11:25:11.082105",
+      "end_time": "2025-06-18T11:38:11.082105",
+      "is_active": false,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 6
+    },
+    "episode_27fe0b8d3682": {
+      "file": "./data/memory/episodes/episode_20250618_142011_episode_27fe0b8d3682.json",
+      "title": "Chat: What's the weather like today?...",
+      "type": "conversation",
+      "start_time": "2025-06-18T14:20:11.082368",
+      "end_time": "2025-06-18T14:59:54.678129",
+      "is_active": false,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 2
+    },
+    "episode_6e55ba1422f44bae964a1c7b4357b46d": {
+      "file": "./data/memory/episodes/episode_20250618_145208_episode_6e55ba1422f44bae964a1c7b4357b46d.json",
+      "title": "Chat: hello...",
+      "type": "conversation",
+      "start_time": "2025-06-18T14:52:08.101294",
+      "end_time": "2025-06-19T07:38:39.582006",
+      "is_active": false,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 3
+    },
+    "episode_77ca425dd8b842408fdafe5f88d05897": {
+      "file": "./data/memory/episodes/episode_20250618_145237_episode_77ca425dd8b842408fdafe5f88d05897.json",
+      "title": "Chat: https://www.youtube.com/watch?v=0f7H6oq-Vqg...",
+      "type": "conversation",
+      "start_time": "2025-06-18T14:52:37.384173",
+      "end_time": null,
+      "is_active": true,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 3
+    },
+    "episode_1b976989506a43fdadc45120326379b1": {
+      "file": "./data/memory/episodes/episode_20250618_145547_episode_1b976989506a43fdadc45120326379b1.json",
+      "title": "Chat: hello ...",
+      "type": "conversation",
+      "start_time": "2025-06-18T14:55:47.165929",
+      "end_time": null,
+      "is_active": true,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 3
+    },
+    "episode_e4c8139d1b684997992b60faa9bfbc8a": {
+      "file": "./data/memory/episodes/episode_20250618_145825_episode_e4c8139d1b684997992b60faa9bfbc8a.json",
+      "title": "Chat: tell me about the last video you created a action ...",
+      "type": "task_completion",
+      "start_time": "2025-06-18T14:58:25.488056",
+      "end_time": null,
+      "is_active": true,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 3
+    },
+    "episode_5c5737b5b4184ad9a1ac6fd723e6ae87": {
+      "file": "./data/memory/episodes/episode_20250618_145955_episode_5c5737b5b4184ad9a1ac6fd723e6ae87.json",
+      "title": "Chat: what is my name...",
+      "type": "conversation",
+      "start_time": "2025-06-18T14:59:55.483126",
+      "end_time": null,
+      "is_active": true,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 3
+    },
+    "episode_52639e9cd0c84027990ce18757320581": {
+      "file": "./data/memory/episodes/episode_20250619_073840_episode_52639e9cd0c84027990ce18757320581.json",
+      "title": "Chat: hello...",
+      "type": "conversation",
+      "start_time": "2025-06-19T07:38:40.969938",
+      "end_time": null,
+      "is_active": true,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 3
+    }
+  },
+  "sessions": {
+    "test-session-123": [
+      "episode_7c373b6dd41b",
+      "episode_d173fed4c649",
+      "episode_4dd3e188c2ec"
+    ],
+    "active-session-456": [
+      "episode_27fe0b8d3682"
+    ],
+    "70b8bde8-2fe8-4eb7-92de-89f441b09d90": [
+      "episode_6e55ba1422f44bae964a1c7b4357b46d",
+      "episode_77ca425dd8b842408fdafe5f88d05897"
+    ],
+    "004c5939-ddfa-4a10-a2e6-7081db8e0bd1": [
+      "episode_1b976989506a43fdadc45120326379b1",
+      "episode_e4c8139d1b684997992b60faa9bfbc8a"
+    ],
+    "cd76d668-4a29-49f6-b200-1d2bd836e515": [
+      "episode_5c5737b5b4184ad9a1ac6fd723e6ae87"
+    ],
+    "19775216-6275-4e9a-9f74-69c6b32349c3": [
+      "episode_52639e9cd0c84027990ce18757320581"
+    ]
+  },
+  "patterns": {},
+  "metadata": {
+    "created_at": "2025-06-18T14:25:11.081613",
+    "last_updated": "2025-06-19T07:38:49.036237"
+  }
+}

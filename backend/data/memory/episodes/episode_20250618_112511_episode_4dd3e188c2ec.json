@@ -1,0 +1,92 @@
+{
+  "id": "episode_4dd3e188c2ec",
+  "type": "task_completion",
+  "title": "Chat: Analyze this YouTube video about machine learning...",
+  "start_time": "2025-06-18T11:25:11.082105",
+  "end_time": "2025-06-18T11:38:11.082105",
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "test-session-123",
+    "thread_id": null,
+    "initial_message": "Analyze this YouTube video about machine learning: https://youtube.com/watch?v=example"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-18T11:25:11.082105",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: Analyze this YouTube video about machine learning...",
+        "type": "task_completion"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-18T11:25:11.082105",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "Analyze this YouTube video about machine learning: https://youtube.com/watch?v=example"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-18T11:27:11.082105",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "I'll analyze that YouTube video for you. Let me extract the transcript and create an action plan..."
+      },
+      "impact_score": 0.6
+    },
+    {
+      "timestamp": "2025-06-18T11:29:11.082105",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "What are the key concepts covered?"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-18T11:31:11.082105",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "Based on the video analysis, here are the key machine learning concepts covered:\n1. Supervised vs Unsupervised Learning\n2. Neural Networks\n3. Training and Validation..."
+      },
+      "impact_score": 0.6
+    },
+    {
+      "timestamp": "2025-06-18T11:38:11.082105",
+      "event_type": "episode_end",
+      "actor": "system",
+      "action": "ended_episode",
+      "data": {
+        "outcome": "completed",
+        "duration": 780.0,
+        "event_count": 6
+      },
+      "impact_score": 0.5
+    }
+  ],
+  "outcome": "completed",
+  "success_metrics": {
+    "completion": 1.0
+  },
+  "memories_created": [
+    "ltm_e239b27a063b"
+  ],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "pattern": "normal_conversation"
+  }
+}

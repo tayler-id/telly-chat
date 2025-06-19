@@ -1,0 +1,59 @@
+{
+  "id": "episode_6e55ba1422f44bae964a1c7b4357b46d",
+  "type": "conversation",
+  "title": "Chat: hello...",
+  "start_time": "2025-06-18T14:52:08.101294",
+  "end_time": "2025-06-19T07:38:39.582006",
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "70b8bde8-2fe8-4eb7-92de-89f441b09d90",
+    "thread_id": null,
+    "initial_message": "hello"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-18T14:52:08.101325",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: hello...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-18T14:52:08.103036",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "hello"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-18T14:52:16.579959",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "Hello! I'm here to help you analyze YouTube videos and their content. I can:\n\n- Extract transcripts from YouTube videos\n- Generate action plans from video content\n- Help analyze and understand video content\n- Answer questions about specific videos\n\nTo get started, just share a YouTube video URL with me, and I'll help you understand its content better. You can also ask specific questions about a video, and I'll analyze the transcript to find relevant information.\n\nWhat would you like to know about?",
+        "memories_used": 0
+      },
+      "impact_score": 0.6
+    }
+  ],
+  "outcome": "auto_closed",
+  "success_metrics": {},
+  "memories_created": [
+    "ltm_e0e23aa7873b4955a2325de9cc653563"
+  ],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "70b8bde8-2fe8-4eb7-92de-89f441b09d90"
+  }
+}

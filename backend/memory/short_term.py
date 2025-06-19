@@ -140,27 +140,66 @@ class ShortTermMemory:
         """Search memories by content"""
         results = []
         query_lower = query.lower()
+        query_words = set(query_lower.split())
+        
+        # Keywords to look for when asking about names
+        name_keywords = {'name', 'called', 'who', 'i am', 'my name', 'know me'}
+        is_name_query = any(keyword in query_lower for keyword in name_keywords)
         
         for memory in self._memories:
             # Check priority filter
             if min_priority and memory.priority.value < min_priority.value:
                 continue
+            
+            memory_lower = memory.content.lower()
+            memory_words = set(memory_lower.split())
+            
+            # Check various matching strategies
+            match_score = 0
+            
+            # 1. Direct substring match
+            if query_lower in memory_lower:
+                match_score += 3
+            
+            # 2. Word overlap
+            common_words = query_words & memory_words
+            if common_words:
+                match_score += len(common_words)
+            
+            # 3. Special handling for name queries
+            if is_name_query:
+                # Look for "i am" or "my name is" patterns
+                if 'i am' in memory_lower or 'my name' in memory_lower:
+                    match_score += 5
+                # Look for user messages (they contain personal info)
+                if memory_lower.startswith('user:'):
+                    match_score += 2
+            
+            # 4. Any word from query in memory
+            if any(word in memory_lower for word in query_words if len(word) > 2):
+                match_score += 1
                 
-            # Simple substring search (can be enhanced with better matching)
-            if query_lower in memory.content.lower():
-                results.append(memory)
+            if match_score > 0:
+                # Update access count when memory is found
+                memory.access_count += 1
+                memory.last_accessed = datetime.now()
+                results.append((memory, match_score))
                 
-        # Sort by relevance (access count and recency)
+        # Sort by score, then by relevance (access count and recency)
         results.sort(
-            key=lambda m: (m.access_count, m.last_accessed),
+            key=lambda x: (x[1], x[0].access_count, x[0].last_accessed or datetime.min),
             reverse=True
         )
         
-        return results[:limit]
+        return [memory for memory, score in results[:limit]]
     
     def get_context_window(self) -> List[str]:
         """Get current context window"""
         return self._context_window.copy()
+    
+    def get_all(self) -> List[MemoryItem]:
+        """Get all memories (for consolidation checks)"""
+        return list(self._memories)
     
     def get_recent(self, limit: int = 10) -> List[MemoryItem]:
         """Get most recent memories"""

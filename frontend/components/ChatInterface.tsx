@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from 'react'
 import MessageList from './MessageList'
 import InputBox from './InputBox'
 import ToolExecution from './ToolExecution'
+import MemoryToggle from './MemoryToggle'
+import ConversationHistory from './ConversationHistory'
 import { api, Message, ToolCall, ToolResult } from '../services/api'
 
 interface ChatInterfaceProps {
@@ -14,6 +16,8 @@ export default function ChatInterface({ sessionId, onSessionChange }: ChatInterf
   const [isLoading, setIsLoading] = useState(false)
   const [currentToolCall, setCurrentToolCall] = useState<ToolCall | null>(null)
   const [currentToolResult, setCurrentToolResult] = useState<ToolResult | null>(null)
+  const [isMemoryEnabled, setIsMemoryEnabled] = useState(false)
+  const [showHistory, setShowHistory] = useState(true)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const scrollToBottom = () => {
@@ -23,6 +27,23 @@ export default function ChatInterface({ sessionId, onSessionChange }: ChatInterf
   useEffect(() => {
     scrollToBottom()
   }, [messages])
+  
+  // Check memory status on mount
+  useEffect(() => {
+    const checkMemoryStatus = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/memory/stats`)
+        if (response.ok) {
+          const data = await response.json()
+          setIsMemoryEnabled(data.enabled || false)
+        }
+      } catch (error) {
+        console.error('Failed to check memory status:', error)
+      }
+    }
+    
+    checkMemoryStatus()
+  }, [])
 
   const handleSendMessage = async (content: string) => {
     if (!content.trim() || isLoading) return
@@ -64,6 +85,11 @@ export default function ChatInterface({ sessionId, onSessionChange }: ChatInterf
         if (!sessionId && data.session_id) {
           onSessionChange(data.session_id)
         }
+      })
+
+      eventSource.addEventListener('features', (event) => {
+        const data = JSON.parse(event.data)
+        setIsMemoryEnabled(data.memory_enabled || false)
       })
 
       eventSource.addEventListener('message', (event) => {
@@ -162,24 +188,72 @@ export default function ChatInterface({ sessionId, onSessionChange }: ChatInterf
   }
 
   return (
-    <div className="h-full flex flex-col bg-white">
-      <div className="flex-1 overflow-y-auto">
-        <MessageList messages={messages} />
-        {(currentToolCall || currentToolResult) && (
-          <ToolExecution 
-            toolCall={currentToolCall}
-            toolResult={currentToolResult}
+    <div className="h-full flex bg-gray-100">
+      {/* Main Chat Area */}
+      <div className="flex-1 flex flex-col bg-white">
+        {/* Header */}
+        <div className="border-b bg-white shadow-sm px-4 py-3 flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <h1 className="text-lg font-semibold text-gray-800">Telly Chat</h1>
+            {sessionId && (
+              <span className="text-xs text-gray-500 font-mono bg-gray-100 px-2 py-1 rounded">
+                Session: {sessionId.slice(0, 8)}...
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-3">
+            <MemoryToggle 
+              isMemoryEnabled={isMemoryEnabled}
+              onToggle={(enabled) => setIsMemoryEnabled(enabled)}
+            />
+            {isMemoryEnabled && (
+              <button
+                onClick={() => setShowHistory(!showHistory)}
+                className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                title={showHistory ? 'Hide conversation history' : 'Show conversation history'}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                    d={showHistory 
+                      ? "M13 5l7 7-7 7M5 5l7 7-7 7" 
+                      : "M11 19l-7-7 7-7m8 14l-7-7 7-7"} 
+                  />
+                </svg>
+              </button>
+            )}
+          </div>
+        </div>
+        
+        {/* Messages Area */}
+        <div className="flex-1 overflow-y-auto">
+          <MessageList messages={messages} />
+          {(currentToolCall || currentToolResult) && (
+            <ToolExecution 
+              toolCall={currentToolCall}
+              toolResult={currentToolResult}
+            />
+          )}
+          <div ref={messagesEndRef} />
+        </div>
+        
+        {/* Input Area */}
+        <div className="border-t bg-white px-4 py-4">
+          <InputBox 
+            onSendMessage={handleSendMessage}
+            isLoading={isLoading}
           />
-        )}
-        <div ref={messagesEndRef} />
+        </div>
       </div>
       
-      <div className="border-t bg-white px-4 py-4">
-        <InputBox 
-          onSendMessage={handleSendMessage}
-          isLoading={isLoading}
-        />
-      </div>
+      {/* Conversation History Sidebar */}
+      {isMemoryEnabled && showHistory && (
+        <div className="w-96 border-l bg-white shadow-lg overflow-hidden flex flex-col animate-slide-in">
+          <ConversationHistory 
+            sessionId={sessionId} 
+            isMemoryEnabled={isMemoryEnabled}
+          />
+        </div>
+      )}
     </div>
   )
 }

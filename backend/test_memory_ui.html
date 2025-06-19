@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Memory Toggle Test</title>
+</head>
+<body>
+    <h1>Memory System Test</h1>
+    <button id="toggleBtn">Toggle Memory</button>
+    <div id="status"></div>
+    <pre id="output"></pre>
+
+    <script>
+        const API_URL = 'http://localhost:8000';
+        let memoryEnabled = false;
+
+        async function checkFeatures() {
+            try {
+                const response = await fetch(`${API_URL}/features`);
+                const data = await response.json();
+                memoryEnabled = data.features?.memory || false;
+                updateUI();
+            } catch (error) {
+                console.error('Error checking features:', error);
+                document.getElementById('output').textContent = `Error: ${error}`;
+            }
+        }
+
+        async function toggleMemory() {
+            try {
+                const response = await fetch(`${API_URL}/features/memory/toggle?enable=${!memoryEnabled}`, {
+                    method: 'POST'
+                });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.detail || 'Failed to toggle memory');
+                }
+
+                const data = await response.json();
+                memoryEnabled = data.memory_enabled;
+                updateUI();
+                document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                console.error('Error toggling memory:', error);
+                document.getElementById('output').textContent = `Error: ${error}`;
+            }
+        }
+
+        function updateUI() {
+            document.getElementById('toggleBtn').textContent = memoryEnabled ? 'Memory ON - Click to turn OFF' : 'Memory OFF - Click to turn ON';
+            document.getElementById('status').textContent = `Memory is currently: ${memoryEnabled ? 'ENABLED' : 'DISABLED'}`;
+        }
+
+        document.getElementById('toggleBtn').addEventListener('click', toggleMemory);
+        
+        // Check initial state
+        checkFeatures();
+    </script>
+</body>
+</html>

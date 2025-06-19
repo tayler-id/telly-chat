@@ -12,7 +12,6 @@ from langchain.vectorstores import VectorStore as LangChainVectorStore
 from langchain.schema import Document
 from langchain.embeddings.base import Embeddings
 from langchain_openai import OpenAIEmbeddings
-from langchain_anthropic import AnthropicEmbeddings
 
 # Vector store implementations
 try:
@@ -63,6 +62,14 @@ class VectorStore:
         
     def _initialize_embeddings(self) -> Embeddings:
         """Initialize embedding model"""
+        # Check if OpenAI API key is available
+        openai_api_key = os.getenv("OPENAI_API_KEY")
+        if not openai_api_key:
+            print("Warning: OPENAI_API_KEY not set. Using mock embeddings for development.")
+            # Return a mock embeddings class for development
+            from langchain_community.embeddings import FakeEmbeddings
+            return FakeEmbeddings(size=1536)  # Same size as OpenAI embeddings
+        
         if self.config.embedding_provider == "openai":
             return OpenAIEmbeddings(
                 model=self.config.embedding_model or "text-embedding-3-small"

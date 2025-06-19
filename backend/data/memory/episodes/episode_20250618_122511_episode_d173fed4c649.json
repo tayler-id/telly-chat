@@ -1,0 +1,92 @@
+{
+  "id": "episode_d173fed4c649",
+  "type": "problem_solving",
+  "title": "Chat: Can you help me debug this React component?...",
+  "start_time": "2025-06-18T12:25:11.081931",
+  "end_time": "2025-06-18T12:38:11.081931",
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "test-session-123",
+    "thread_id": null,
+    "initial_message": "Can you help me debug this React component?"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-18T12:25:11.081931",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: Can you help me debug this React component?...",
+        "type": "problem_solving"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-18T12:25:11.081931",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "Can you help me debug this React component?"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-18T12:27:11.081931",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "Of course! I'd be happy to help debug your React component. Could you share the code and describe what issue you're experiencing?"
+      },
+      "impact_score": 0.6
+    },
+    {
+      "timestamp": "2025-06-18T12:29:11.081931",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "It's showing 'undefined is not a function' error"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-18T12:31:11.081931",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "That error typically means you're trying to call something that isn't a function. Let me help you track down the issue..."
+      },
+      "impact_score": 0.6
+    },
+    {
+      "timestamp": "2025-06-18T12:38:11.081931",
+      "event_type": "episode_end",
+      "actor": "system",
+      "action": "ended_episode",
+      "data": {
+        "outcome": "completed",
+        "duration": 780.0,
+        "event_count": 6
+      },
+      "impact_score": 0.5
+    }
+  ],
+  "outcome": "completed",
+  "success_metrics": {
+    "completion": 1.0
+  },
+  "memories_created": [
+    "ltm_6b208581c9e9"
+  ],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "pattern": "normal_conversation"
+  }
+}
