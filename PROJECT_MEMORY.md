@@ -10,32 +10,26 @@
 ```
 telly-chat/
 ├── backend/
-│   ├── main.py                    # ✅ CURRENT: Primary API with all features
+│   ├── main.py                    # Original complex API (episodes, memory, workflows)
+│   ├── main_simple.py            # ✅ CURRENT: Simplified API with core endpoints
 │   ├── agents/
-│   │   ├── enhanced_chat_agent.py # ✅ CURRENT: Main agent with MCP support
-│   │   ├── simple_chat_agent.py   # Simplified fallback agent
+│   │   ├── chat_agent.py         # Base agent with LangChain
+│   │   ├── enhanced_chat_agent.py # Complex agent with memory systems
+│   │   ├── simple_chat_agent.py  # ✅ CURRENT: Simplified agent
 │   │   └── tools/
-│   │       └── enhanced_telly_tool.py # Smart YouTube analysis
-│   ├── services/
-│   │   ├── mcp/                   # ✅ NEW: MCP client implementation
-│   │   │   ├── mcp_client.py      # MCP client and session management
-│   │   │   ├── mcp_protocol.py    # JSON-RPC 2.0 protocol
-│   │   │   ├── mcp_transport.py   # Transport layers (stdio, WebSocket)
-│   │   │   └── mcp_registry.py    # Server configuration management
-│   │   ├── session_manager.py     # Session management
-│   │   └── transcript_service.py  # Transcript API services
+│   │       ├── telly_tool.py      # Original YouTube tool
+│   │       └── enhanced_telly_tool.py # ✅ NEW: Smart content detection
 │   ├── memory/
-│   │   ├── transcript_store.py    # Full transcript storage with FAISS
-│   │   ├── episodic_store.py      # Episode-based memory
+│   │   ├── transcript_store.py    # Stores full transcripts with FAISS search
+│   │   ├── episodic_store.py      # Episode-based memory (unused in simple)
 │   │   ├── context_manager.py     # Context loading for LLM
-│   │   ├── short_term.py          # Short-term memory
-│   │   ├── long_term.py           # Long-term memory
 │   │   └── vector_store.py        # FAISS vector storage
-│   ├── workflows/                 # Workflow system (optional)
-│   ├── tests/                     # ✅ All test files moved here
+│   ├── workflows/                 # Complex workflow system (unused in simple)
+│   │   ├── youtube_workflow.py    # YouTube analysis workflow
+│   │   └── templates.py           # Workflow templates
 │   └── data/
 │       └── memory/
-│           └── transcripts/       # Saved transcripts + vector index
+│           └── transcripts/       # Saved transcript JSONs + vector index
 │
 ├── frontend/
 │   ├── components/
@@ -43,46 +37,40 @@ telly-chat/
 │   │   ├── SaveButton.tsx         # Save transcript button
 │   │   ├── MemoryToggle.tsx       # Memory on/off toggle
 │   │   ├── ConversationHistory.tsx # Episode history sidebar
-│   │   └── WorkflowButton.tsx     # Workflow trigger
-│   └── .env.local                 # Frontend configuration
+│   │   ├── WorkflowButton.tsx     # Workflow trigger (unused)
+│   │   └── SimpleYouTubeButton.tsx # ✅ NEW: One-click processing
+│   └── .env.local                 # NEXT_PUBLIC_API_URL=http://localhost:8000
 │
-├── start.sh                      # ✅ CURRENT: Unified startup script
-├── PROJECT_MEMORY.md             # ✅ This file - comprehensive docs
-└── .env                          # API keys and configuration
+├── start_complete.sh             # Complex startup (venv issues)
+├── start_simple.sh              # ✅ CURRENT: Simple startup script
+├── SIMPLIFIED_GUIDE.md          # Guide for simplified version
+└── .env                         # API keys (ANTHROPIC_API_KEY, OPENAI_API_KEY)
 ```
 
 ## Key Components
 
-### Current Active Files
+### Current Active Files (Simplified System)
 
-1. **main.py** - Primary FastAPI backend
-   - Full-featured with memory, episodes, workflows, and MCP support
-   - Endpoints for chat, transcripts, episodes, memory, workflows, and MCP
-   - WebSocket support for real-time communication
+1. **main_simple.py** - Simplified FastAPI backend
+   - Endpoints: `/chat/stream`, `/youtube/process`, `/transcripts/search`
+   - No complex memory or workflow endpoints
+   - Clean error handling
 
-2. **enhanced_chat_agent.py** - Main agent with all features
-   - Memory system integration (short-term, long-term, episodic)
-   - Workflow support for complex tasks
-   - MCP client support for external integrations
-   - Transcript storage with semantic search
-
-3. **simple_chat_agent.py** - Simplified fallback agent
-   - Core YouTube transcript extraction
+2. **simple_chat_agent.py** - Core agent logic
+   - Uses enhanced_telly_tool for smart analysis
    - Basic transcript storage
-   - No advanced features (kept as backup)
+   - No complex memory systems
 
-4. **enhanced_telly_tool.py** - Smart YouTube analysis
+3. **enhanced_telly_tool.py** - Smart YouTube analysis
    - Detects content type (tutorial, news, review, etc.)
    - Generates appropriate summaries
    - AI-content detection
-   - Saves full transcripts with hidden metadata
+   - Adapts output format to video type
 
-5. **MCP Support** (NEW)
-   - **services/mcp/** - Complete MCP client implementation
-   - JSON-RPC 2.0 protocol support
-   - Multiple transport layers (stdio, WebSocket)
-   - Tool discovery and integration
-   - Server registry for managing connections
+4. **transcript_store.py** - Persistent storage
+   - Saves full transcripts as JSON
+   - FAISS vector index for semantic search
+   - Simple API for save/retrieve/search
 
 ### Inactive/Legacy Components
 
@@ -93,56 +81,23 @@ telly-chat/
 
 ## API Endpoints
 
-### Core Endpoints
+### Active (Simple System)
 ```
-GET  /                          # API info
-GET  /health                   # Health check
-GET  /features                 # Available features
-GET  /chat/stream              # Streaming chat (SSE)
-WS   /ws                       # WebSocket chat
-```
-
-### YouTube & Transcripts
-```
-POST /youtube/process          # Process & save YouTube video
-GET  /transcripts/search       # Semantic search
-GET  /transcripts/recent       # Recent transcripts
-GET  /transcripts/{id}         # Get specific transcript
-GET  /transcripts/by-url       # Get transcript by URL
-GET  /transcripts/related/{id} # Get related transcripts
+GET  /                    # API info
+GET  /health             # Health check
+GET  /features           # Available features
+GET  /chat/stream        # Streaming chat (SSE)
+POST /youtube/process    # Process & save YouTube video
+GET  /transcripts/search # Semantic search
+GET  /transcripts/recent # Recent transcripts
 ```
 
-### Memory System
+### Legacy (Complex System)
 ```
-POST /features/memory/toggle   # Toggle memory on/off
-GET  /memory/stats            # Memory statistics
-GET  /memory/export           # Export memory state
-POST /memory/import           # Import memory state
-```
-
-### Episodes
-```
-GET  /episodes/active         # List active episodes
-GET  /episodes/history        # Episode history
-GET  /episodes/session/{id}   # Episodes for session
-POST /episodes/end/{id}       # End an episode
-GET  /episodes/search         # Search episodes
-```
-
-### MCP Support (NEW)
-```
-GET  /mcp/servers             # List available MCP servers
-POST /mcp/servers/{name}/connect    # Connect to MCP server
-POST /mcp/servers/{name}/disconnect # Disconnect from server
-POST /mcp/servers/auto-connect      # Auto-connect enabled servers
-GET  /mcp/tools               # List available MCP tools
-```
-
-### Workflows
-```
-POST /workflows/execute       # Execute a workflow
-GET  /workflows/status/{id}   # Get workflow status
-GET  /workflows/templates     # List workflow templates
+POST /features/memory/toggle
+GET  /memory/stats
+GET  /episodes/*
+POST /workflows/*
 ```
 
 ## Key Features
@@ -207,16 +162,15 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 
 ## Recent Changes
 
-1. **Fixed Full Transcript Saving** - Enhanced tools now save complete transcripts with hidden metadata
-2. **Major Cleanup** - Removed unused files, consolidated agents, moved tests to tests/
-3. **Unified Startup Script** - Single start.sh with better process management
-4. **MCP Client Support** - Complete Model Context Protocol implementation
-   - JSON-RPC 2.0 protocol
-   - Multiple transport support (stdio, WebSocket)
-   - Tool discovery and integration
-   - Server registry for configuration
-5. **Enhanced YouTube Tool** - Smart content type and AI detection
-6. **Simplified Imports** - Removed fallback logic, using enhanced agent as primary
+1. **Simplified Architecture** - Removed workflows, complex memory
+2. **Enhanced YouTube Tool** - Smart content type detection
+3. **Fixed Chat** - Removed dynamic prompt modification
+4. **Better Startup** - Simple script that works
+5. **Clear Documentation** - SIMPLIFIED_GUIDE.md
+6. **Content Type Detection** - Detects tutorial, news, review, educational content
+7. **AI-Generated Detection** - Identifies potentially AI-generated videos
+8. **Adaptive Output** - Different formats for different video types
+9. **Test Scripts** - Added test_enhanced_tool.py and test_content_detection.py
 
 ## Next Steps
 

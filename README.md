@@ -20,27 +20,6 @@ An AI-powered chat application with YouTube transcript extraction capabilities a
 - 🔍 **Smart Chunking**: Semantic and recursive text chunking
 - 🚀 **Pipe Agents**: Stream processing and agent chaining
 
-## 🚀 Quick Start (Simplified Version)
-
-For a simpler, more reliable experience, we now offer a **simplified version** that focuses on core functionality:
-
-```bash
-# Start the simplified version
-./start_simple.sh
-```
-
-This will start:
-- Backend on http://localhost:8000  
-- Frontend on http://localhost:3000
-
-The simplified version includes:
-- ✅ YouTube transcript extraction
-- ✅ Transcript storage and search
-- ✅ Clean chat interface
-- ✅ No complex dependencies
-
-See [SIMPLIFIED_GUIDE.md](SIMPLIFIED_GUIDE.md) for details.
-
 ## Tech Stack
 
 ### Backend

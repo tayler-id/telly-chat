@@ -1,0 +1,57 @@
+{
+  "id": "episode_77ca425dd8b842408fdafe5f88d05897",
+  "type": "conversation",
+  "title": "Chat: https://www.youtube.com/watch?v=0f7H6oq-Vqg...",
+  "start_time": "2025-06-18T14:52:37.384173",
+  "end_time": null,
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "70b8bde8-2fe8-4eb7-92de-89f441b09d90",
+    "thread_id": null,
+    "initial_message": "https://www.youtube.com/watch?v=0f7H6oq-Vqg"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-18T14:52:37.384246",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: https://www.youtube.com/watch?v=0f7H6oq-Vqg...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-18T14:52:37.387189",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "https://www.youtube.com/watch?v=0f7H6oq-Vqg"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-18T14:53:09.049842",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "### \ud83d\udcf9 Video Information\n- **Video ID:** `0f7H6oq-Vqg`\n- **Language:** en\n\n### \ud83d\udcdd Transcript\n*Showing first 1500 characters of transcript:*\n\n```\nWhat would it take to build an AI that doesn't just process but thinks? And Brian and I, we asked ourselves that question. And the answer wasn't a bigger model. It was a better blueprint, a blueprint for a digital brain. Today, we want to introduce you to what we built, the cognitive core. The cognitive core is not a single AI. It is a society of mind and for every major part of the brain we have an AI agent. So the frontal lobe analog, the hippocample complex, the amygdala component, these are all agentic systems that work together in the brain, speak to each other through a message bus system and an internal pathway network. And uh this is kind of like a digital nervous system. The global bus broadcasts highle information like changes in mood or emotion or feelings while direct high-speed pathways handle focused conversations just like dedicated neural circuits. For instance, when you see something with your eye, it goes to a very specific point in your brain for that information to get processed. And so we would have like a fastm moving high-speed internal pathway network um to handle, you know, that type of connection. And you can see here from this image, we're tracking the brain and it's sending messages and thoughts between the different parts. And you can see the the greater message bus system here where these parts are connected. And then there are internal path network pathways um between the different parts of the brain where they're communicating more directly wit...\n```\n\n\ud83d\udcca **Full transcript:** 11,848 characters \u2022 2,171 words\n\n\ud83d\udcbe **Click 'Save Transcript & Action Plan' below to download the complete transcript**\n\n---\n\n### \ud83d\udccb Action Plan\n\nCOGNITIVE CORE AI IMPLEMENTATION PLAN\n\nBrief Summary:\nThe video describes the architecture of a \"Cognitive Core\" - a system that mimics the human brain using multiple AI agents representing different brain regions, connected through a message bus system and internal pathways. The system was built using Pharaoh Mind to generate the framework based on brain research, featuring persistent memory, emotional modulation, and different cognitive modes.\n\nPrerequisites:\n- Advanced knowledge of AI/ML systems\n- Experience with Neo4j database\n- Understanding of neural networks and agent-based systems\n- Access to Pharaoh Mind or similar AI development platform\n- Strong computational resources\n\nStep-by-Step Action Plan:\n\n1. Initial Setup (2-3 days)\n   - Set up development environment\n   - Install Neo4j for persistent memory\n   - Configure message bus system\n   - Set up monitoring tools\n\n2. Agent Architecture Development (1 week)\n   - Create individual AI agents for:\n     * Frontal lobe analog\n     * Hippocampal complex\n     * Amygdala component\n     * Other brain region equivalents\n   - Implement agent communication protocols\n\n3. Communication System Implementation (1 week)\n   - Develop global message bus\n   - Create high-speed internal pathways\n   - Implement message routing logic\n   - Set up monitoring system\n\n4. Memory System Development (1-2 weeks)\n   - Configure Neo4j graph database\n   - Implement episodic memory storage\n   - Create semantic memory framework\n   - Develop memory tagging system\n\n5. Emotional Modulation System (1 week)\n   - Create neurochemical simulation system\n   - Implement parameter adjustment mechanisms\n   - Develop emotion tagging system\n   - Set up mood regulation controls\n\n6. Cognitive Modes Implementation (1 week)\n   - Develop central executive mode\n   - Create default mode network\n   - Implement salience network\n   - Build mode switching mechanism\n\n7. Dashboard Development (1-2 weeks)\n   - Create monitoring interface\n   - Implement health check systems\n   - Develop thought tracking\n   - Build memory visualization tools\n\nExpected Outcomes:\n- Functioning cognitive system with multiple integrated AI agents\n- Persistent memory storage and retrieval\n- Emotional modulation capabilities\n- Multiple cognitive operating modes\n- Comprehensive monitoring system\n\nCommon Pitfalls to Avoid:\n1. Over-complexity in agent interactions\n2. Memory leaks in persistent storage\n3. Insufficient error handling\n4. Poor resource management\n5. Lack of proper documentation\n6. Inadequate monitoring capabilities\n7. Uncontrolled message proliferation\n\nRequired Resources:\n- High-performance computing infrastructure\n- Neo4j database system\n- Message bus framework\n- AI development platform (like Pharaoh Mind)\n- Monitoring and visualization tools\n- Extensive storage capacity for memory system\n\nNotes:\n- Regular testing throughout development is crucial\n- Document all systems and interactions thoroughly\n- Implement robust error handling and recovery\n- Consider scalability in initial design\n- Maintain backup systems for critical components\n\nThis plan assumes a small team of experienced developers and may need adjustment based on available resources and specific requirements.",
+        "memories_used": 0
+      },
+      "impact_score": 0.6
+    }
+  ],
+  "outcome": null,
+  "success_metrics": {},
+  "memories_created": [],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "70b8bde8-2fe8-4eb7-92de-89f441b09d90"
+  }
+}

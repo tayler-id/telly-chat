@@ -37,9 +37,14 @@ session_manager = SessionManager()
 chat_agent: Optional[Any] = None
 memory_enabled = False
 
-# Import enhanced agent
-from agents.enhanced_chat_agent import EnhancedChatAgent
-from config import get_agent_config, MEMORY_CONFIG
+# Try to import enhanced agent
+try:
+    from agents.enhanced_chat_agent import EnhancedChatAgent
+    from config import get_agent_config, MEMORY_CONFIG
+    ENHANCED_AVAILABLE = True
+except ImportError:
+    ENHANCED_AVAILABLE = False
+    from agents.chat_agent import ChatAgent
 
 
 @asynccontextmanager
@@ -53,13 +58,18 @@ async def lifespan(app: FastAPI):
     # Initialize the chat agent
     model_provider = os.getenv("MODEL_PROVIDER", "anthropic")
     
-    # Use enhanced agent with optional features
-    config = get_agent_config()
-    chat_agent = EnhancedChatAgent(
-        model_provider=model_provider,
-        **config
-    )
-    print(f"Enhanced agent initialized with features: {chat_agent.get_features_status()}")
+    if ENHANCED_AVAILABLE:
+        # Use enhanced agent with optional features
+        config = get_agent_config()
+        chat_agent = EnhancedChatAgent(
+            model_provider=model_provider,
+            **config
+        )
+        print(f"Enhanced agent initialized with features: {chat_agent.get_features_status()}")
+    else:
+        # Fallback to basic agent
+        chat_agent = ChatAgent(model_provider=model_provider)
+        print("Basic agent initialized (install optional dependencies for advanced features)")
     
     yield
     
@@ -67,15 +77,15 @@ async def lifespan(app: FastAPI):
     print("Shutting down Telly Chat backend...")
     await session_manager.cleanup()
     
-    if hasattr(chat_agent, 'cleanup'):
+    if ENHANCED_AVAILABLE and hasattr(chat_agent, 'cleanup'):
         await chat_agent.cleanup()
 
 
 # Create FastAPI app
 app = FastAPI(
     title="Telly Chat API",
-    description="Chat interface with YouTube transcript extraction, memory, and MCP support",
-    version="2.0.0",
+    description="Chat interface with YouTube transcript extraction capabilities",
+    version="1.0.0",
     lifespan=lifespan
 )
 
@@ -870,145 +880,6 @@ async def export_session_for_training(session_id: str):
     
     data = chat_agent.episodic_memory.export_session_for_training(session_id)
     return data
-
-
-# Workflow Endpoints
-
-@app.post("/workflows/youtube-analysis")
-async def run_youtube_workflow(url: str):
-    """Run YouTube analysis workflow on a video"""
-    if not ENHANCED_AVAILABLE:
-        raise HTTPException(
-            status_code=501,
-            detail="Enhanced features not available"
-        )
-    
-    try:
-        # Import workflow
-        from workflows.youtube_workflow import run_youtube_analysis
-        
-        # Get transcript store
-        transcript_store = None
-        if hasattr(chat_agent, 'transcript_store'):
-            transcript_store = chat_agent.transcript_store
-        
-        # Run workflow
-        results = await run_youtube_analysis(
-            youtube_url=url,
-            agent=chat_agent,
-            transcript_store=transcript_store
-        )
-        
-        return {
-            "success": True,
-            "workflow_id": results["workflow_id"],
-            "status": results["status"],
-            "report": results["report"],
-            "errors": results["errors"]
-        }
-        
-    except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"Workflow failed: {str(e)}"
-        )
-
-
-@app.get("/workflows/templates")
-async def list_workflow_templates():
-    """List available workflow templates"""
-    try:
-        from workflows.templates import list_workflow_templates
-        return {
-            "templates": list_workflow_templates()
-        }
-    except ImportError:
-        return {
-            "templates": [],
-            "error": "Workflow module not available"
-        }
-
-
-# MCP Endpoints
-
-@app.get("/mcp/servers")
-async def list_mcp_servers():
-    """List available MCP servers"""
-    if not chat_agent or not hasattr(chat_agent, 'list_mcp_servers'):
-        raise HTTPException(status_code=501, detail="MCP not available")
-    
-    return {
-        "servers": await chat_agent.list_mcp_servers()
-    }
-
-
-@app.post("/mcp/servers/{server_name}/connect")
-async def connect_mcp_server(
-    server_name: str,
-    custom_url: Optional[str] = None
-):
-    """Connect to an MCP server"""
-    if not chat_agent or not hasattr(chat_agent, 'connect_mcp_server'):
-        raise HTTPException(status_code=501, detail="MCP not available")
-    
-    success = await chat_agent.connect_mcp_server(server_name, custom_url)
-    
-    if not success:
-        raise HTTPException(status_code=400, detail=f"Failed to connect to server {server_name}")
-    
-    return {
-        "success": True,
-        "message": f"Connected to MCP server {server_name}"
-    }
-
-
-@app.post("/mcp/servers/{server_name}/disconnect")
-async def disconnect_mcp_server(server_name: str):
-    """Disconnect from an MCP server"""
-    if not chat_agent or not hasattr(chat_agent, 'disconnect_mcp_server'):
-        raise HTTPException(status_code=501, detail="MCP not available")
-    
-    success = await chat_agent.disconnect_mcp_server(server_name)
-    
-    if not success:
-        raise HTTPException(status_code=400, detail=f"Failed to disconnect from server {server_name}")
-    
-    return {
-        "success": True,
-        "message": f"Disconnected from MCP server {server_name}"
-    }
-
-
-@app.post("/mcp/servers/auto-connect")
-async def auto_connect_mcp_servers():
-    """Auto-connect to all enabled MCP servers"""
-    if not chat_agent or not hasattr(chat_agent, 'auto_connect_mcp_servers'):
-        raise HTTPException(status_code=501, detail="MCP not available")
-    
-    results = await chat_agent.auto_connect_mcp_servers()
-    
-    return {
-        "results": results,
-        "connected": sum(1 for v in results.values() if v),
-        "failed": sum(1 for v in results.values() if not v)
-    }
-
-
-@app.get("/mcp/tools")
-async def list_mcp_tools():
-    """List all available MCP tools"""
-    if not chat_agent or not hasattr(chat_agent, '_mcp_tools'):
-        raise HTTPException(status_code=501, detail="MCP not available")
-    
-    tools = []
-    for tool in chat_agent._mcp_tools:
-        tools.append({
-            "name": tool.name,
-            "description": tool.description,
-            "server": tool.mcp_session.transport.url if hasattr(tool, 'mcp_session') else "unknown"
-        })
-    
-    return {"tools": tools}
 
 
 if __name__ == "__main__":

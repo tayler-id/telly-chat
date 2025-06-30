@@ -40,13 +40,6 @@ except ImportError:
     THREADS_AVAILABLE = False
     print("Warning: Threading modules not available. Install required dependencies.")
 
-try:
-    from ..services.mcp import MCPClient, get_mcp_registry
-    MCP_AVAILABLE = True
-except ImportError:
-    MCP_AVAILABLE = False
-    print("Warning: MCP support not available. Install required dependencies.")
-
 
 class EnhancedChatAgent(ChatAgent):
     """
@@ -109,17 +102,6 @@ class EnhancedChatAgent(ChatAgent):
             )
         else:
             self.thread_manager = None
-        
-        # MCP components
-        self.mcp_enabled = MCP_AVAILABLE
-        if self.mcp_enabled:
-            self.mcp_client = MCPClient()
-            self.mcp_registry = get_mcp_registry()
-            self._mcp_tools = []  # Will be populated when MCP servers connect
-        else:
-            self.mcp_client = None
-            self.mcp_registry = None
-            self._mcp_tools = []
     
     def _init_memory(self, config: Dict[str, Any]):
         """Initialize memory components"""
@@ -254,13 +236,12 @@ class EnhancedChatAgent(ChatAgent):
             full_response = ""
             
             # Override system prompt if memory is enabled
-            # TODO: Fix prompt override for new LangChain version
-            # original_prompt = None
-            # if self.memory_enabled and context_additions and MEMORY_AVAILABLE:
-            #     # Temporarily update the agent's system prompt
-            #     original_prompt = self.agent.agent.prompt.messages[0].content
-            #     memory_prompt = get_memory_prompt(has_context=True)
-            #     self.agent.agent.prompt.messages[0] = ("system", memory_prompt)
+            original_prompt = None
+            if self.memory_enabled and context_additions and MEMORY_AVAILABLE:
+                # Temporarily update the agent's system prompt
+                original_prompt = self.agent.agent.prompt.messages[0].content
+                memory_prompt = get_memory_prompt(has_context=True)
+                self.agent.agent.prompt.messages[0] = ("system", memory_prompt)
             
             async for chunk in super().chat(enhanced_message, history, stream):
                 # Accumulate text chunks
@@ -270,9 +251,8 @@ class EnhancedChatAgent(ChatAgent):
                 yield chunk
             
             # Restore original prompt if it was changed
-            # TODO: Fix prompt restore for new LangChain version
-            # if original_prompt is not None:
-            #     self.agent.agent.prompt.messages[0] = ("system", original_prompt)
+            if original_prompt is not None:
+                self.agent.agent.prompt.messages[0] = ("system", original_prompt)
             
             # Store complete conversation in memory after streaming is done
             if self.memory_enabled and use_memory and full_response:
@@ -468,7 +448,6 @@ class EnhancedChatAgent(ChatAgent):
             "memory": self.memory_enabled,
             "workflows": self.workflows_enabled,
             "threads": self.threads_enabled,
-            "mcp": self.mcp_enabled,
             "base_functional": True,
             "transcript_store": self.transcript_store is not None
         }
@@ -539,95 +518,3 @@ class EnhancedChatAgent(ChatAgent):
         
         if self.workflows_enabled and self.workflow_orchestrator:
             await self.workflow_orchestrator.stop()
-        
-        if self.mcp_enabled and self.mcp_client:
-            await self.mcp_client.disconnect_all()
-    
-    # MCP Methods
-    
-    async def connect_mcp_server(self, name: str, url: str = None) -> bool:
-        """Connect to an MCP server
-        
-        Args:
-            name: Server name (from registry) or custom name
-            url: Optional URL if not using registry
-            
-        Returns:
-            True if connected successfully
-        """
-        if not self.mcp_enabled:
-            return False
-        
-        try:
-            # Check registry first
-            if url is None and self.mcp_registry:
-                config = self.mcp_registry.get_server(name)
-                if config and config.enabled:
-                    url = config.url
-                    headers = config.headers
-                else:
-                    return False
-            else:
-                headers = None
-            
-            # Connect to server
-            session = await self.mcp_client.connect_to_mcp(url, name, headers)
-            
-            # Get tools from server and convert to LangChain tools
-            tools = await session.get_tools()
-            for tool in tools:
-                langchain_tool = tool.to_langchain_tool()
-                langchain_tool.mcp_session = session
-                self._mcp_tools.append(langchain_tool)
-                self.tools.append(langchain_tool)
-            
-            return True
-            
-        except Exception as e:
-            print(f"Failed to connect to MCP server {name}: {e}")
-            return False
-    
-    async def disconnect_mcp_server(self, name: str) -> bool:
-        """Disconnect from an MCP server"""
-        if not self.mcp_enabled:
-            return False
-        
-        try:
-            await self.mcp_client.disconnect(name)
-            
-            # Remove tools from this server
-            self._mcp_tools = [t for t in self._mcp_tools if t.mcp_session.transport.url != name]
-            self.tools = [t for t in self.tools if not hasattr(t, 'mcp_session') or t.mcp_session.transport.url != name]
-            
-            return True
-        except Exception as e:
-            print(f"Failed to disconnect MCP server {name}: {e}")
-            return False
-    
-    async def list_mcp_servers(self) -> List[Dict[str, Any]]:
-        """List available MCP servers from registry"""
-        if not self.mcp_enabled or not self.mcp_registry:
-            return []
-        
-        servers = []
-        for config in self.mcp_registry.list_servers():
-            servers.append({
-                "name": config.name,
-                "url": config.url,
-                "description": config.description,
-                "enabled": config.enabled,
-                "connected": self.mcp_client.get_session(config.name) is not None
-            })
-        
-        return servers
-    
-    async def auto_connect_mcp_servers(self) -> Dict[str, bool]:
-        """Auto-connect to all enabled MCP servers from registry"""
-        if not self.mcp_enabled:
-            return {}
-        
-        results = {}
-        for config in self.mcp_registry.list_servers(enabled_only=True):
-            results[config.name] = await self.connect_mcp_server(config.name)
-        
-        return results

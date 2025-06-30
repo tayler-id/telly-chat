@@ -1,0 +1,57 @@
+{
+  "id": "episode_5c5737b5b4184ad9a1ac6fd723e6ae87",
+  "type": "conversation",
+  "title": "Chat: what is my name...",
+  "start_time": "2025-06-18T14:59:55.483126",
+  "end_time": null,
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "cd76d668-4a29-49f6-b200-1d2bd836e515",
+    "thread_id": null,
+    "initial_message": "what is my name"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-18T14:59:55.483167",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: what is my name...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-18T14:59:55.484873",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "what is my name"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-18T15:00:01.704485",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "I don't see any previous context that mentions your name. The conversation fragments shown in the \"Relevant context from memory\" don't contain any personal identification information.\n\nTo help you properly, could you please:\n1. Tell me your name, or\n2. Share what specific information you're looking for?\n\nI'm here to assist you, particularly with analyzing YouTube videos and their content. If you have any videos you'd like to analyze or other questions, I'm happy to help!",
+        "memories_used": 1
+      },
+      "impact_score": 0.6
+    }
+  ],
+  "outcome": null,
+  "success_metrics": {},
+  "memories_created": [],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "cd76d668-4a29-49f6-b200-1d2bd836e515"
+  }
+}
