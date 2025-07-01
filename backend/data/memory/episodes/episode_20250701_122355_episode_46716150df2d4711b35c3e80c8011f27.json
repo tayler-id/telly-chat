@@ -1,0 +1,46 @@
+{
+  "id": "episode_46716150df2d4711b35c3e80c8011f27",
+  "type": "conversation",
+  "title": "Chat: https://youtu.be/4Z2uBtIfmfE...",
+  "start_time": "2025-07-01T12:23:55.706058",
+  "end_time": null,
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "e1068edb-7c77-49de-8378-b0b4dfdb2069",
+    "thread_id": null,
+    "initial_message": "https://youtu.be/4Z2uBtIfmfE"
+  },
+  "events": [
+    {
+      "timestamp": "2025-07-01T12:23:55.706142",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: https://youtu.be/4Z2uBtIfmfE...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-07-01T12:23:55.709385",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "https://youtu.be/4Z2uBtIfmfE"
+      },
+      "impact_score": 0.5
+    }
+  ],
+  "outcome": null,
+  "success_metrics": {},
+  "memories_created": [],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "e1068edb-7c77-49de-8378-b0b4dfdb2069"
+  }
+}

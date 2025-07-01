@@ -3,7 +3,7 @@
   "type": "task_completion",
   "title": "Chat: tell me about the last video you created a action ...",
   "start_time": "2025-06-18T14:58:25.488056",
-  "end_time": null,
+  "end_time": "2025-07-01T12:24:11.262841",
   "participants": [
     "user",
     "assistant"
@@ -47,9 +47,11 @@
       "impact_score": 0.6
     }
   ],
-  "outcome": null,
+  "outcome": "auto_closed",
   "success_metrics": {},
-  "memories_created": [],
+  "memories_created": [
+    "ltm_3d7be207953c4b788b7493a90dbdaa7a"
+  ],
   "metadata": {
     "auto_close_timeout": 7200.0,
     "session_id": "004c5939-ddfa-4a10-a2e6-7081db8e0bd1"

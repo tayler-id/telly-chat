@@ -1,0 +1,58 @@
+{
+  "id": "episode_4957efd7b7c742c88d50964f3bd299ba",
+  "type": "task_completion",
+  "title": "Chat: 16:06:47.353 websocket.js:46 [HMR] connected\n16:06...",
+  "start_time": "2025-06-30T16:09:09.834706",
+  "end_time": null,
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "8291448b-fdef-4d67-bf45-676d5140642c",
+    "thread_id": null,
+    "initial_message": "16:06:47.353 websocket.js:46 [HMR] connected\n16:06:47.602 index.iife.js:1 content script loaded\n16:06:47.642 :3000/favicon.ico:1  Failed to load resource: the server responded with a status of 404 (Not Found)\n16:08:01.773 client.js:2 SSE error: MessageEvent\nconsole.error @ client.js:2\n16:08:46.674 hot-dev-client.js:197 [Fast Refresh] rebuilding\n16:08:46.692 hot-dev-client.js:166 [Fast Refresh] done in 18ms\n16:08:46.703 webpack.js?ts=1751314006726:1180 Fetch finished loading: GET \"http://localhost:3000/_next/static/webpack/a41c2fcca5ca5376.webpack.hot-update.json\".\n__webpack_require__.hmrM @ webpack.js?ts=1751314006726:1180\nPromise.then\nhotCheck @ webpack.js?ts=1751314006726:494\ntryApplyUpdates @ hot-dev-client.js:318\nhandleSuccess @ hot-dev-client.js:91\nprocessMessage @ hot-dev-client.js:229\neval @ hot-dev-client.js:55\nhandleMessage @ websocket.js:52\n"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-30T16:09:09.834761",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: 16:06:47.353 websocket.js:46 [HMR] connected\n16:06...",
+        "type": "task_completion"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-30T16:09:09.836377",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "16:06:47.353 websocket.js:46 [HMR] connected\n16:06:47.602 index.iife.js:1 content script loaded\n16:06:47.642 :3000/favicon.ico:1  Failed to load resource: the server responded with a status of 404 (Not Found)\n16:08:01.773 client.js:2 SSE error: MessageEvent\nconsole.error @ client.js:2\n16:08:46.674 hot-dev-client.js:197 [Fast Refresh] rebuilding\n16:08:46.692 hot-dev-client.js:166 [Fast Refresh] done in 18ms\n16:08:46.703 webpack.js?ts=1751314006726:1180 Fetch finished loading: GET \"http://localhost:3000/_next/static/webpack/a41c2fcca5ca5376.webpack.hot-update.json\".\n__webpack_require__.hmrM @ webpack.js?ts=1751314006726:1180\nPromise.then\nhotCheck @ webpack.js?ts=1751314006726:494\ntryApplyUpdates @ hot-dev-client.js:318\nhandleSuccess @ hot-dev-client.js:91\nprocessMessage @ hot-dev-client.js:229\neval @ hot-dev-client.js:55\nhandleMessage @ websocket.js:52\n"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-30T16:09:15.688253",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "I notice you've shared what appears to be development console logs rather than a YouTube URL. These logs seem to be related to a development environment, showing:\n\n- Hot Module Replacement (HMR) connection\n- Content script loading\n- A 404 error for favicon.ico\n- Server-Sent Events (SSE) error\n- Fast Refresh rebuilding events\n- Webpack hot update activities\n\nIf you'd like me to analyze a YouTube video, please share a valid YouTube URL in the format:\n`https://www.youtube.com/watch?v=XXXXXXXXXX`\n\nAlternatively, if you need help debugging these development logs, I'd be happy to assist with that instead. Would you like to:\n1. Share a YouTube video URL for analysis, or\n2. Get help interpreting these development logs?",
+        "memories_used": 1,
+        "context_tokens": 0
+      },
+      "impact_score": 0.6
+    }
+  ],
+  "outcome": null,
+  "success_metrics": {},
+  "memories_created": [],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "8291448b-fdef-4d67-bf45-676d5140642c"
+  }
+}

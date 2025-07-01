@@ -1,0 +1,87 @@
+{
+  "episodes": {
+    "episode_a5b248f057a043f790d423ef2445850c": {
+      "file": "./data/memory/episodes/episode_20250630_160901_episode_a5b248f057a043f790d423ef2445850c.json",
+      "title": "Chat: hello...",
+      "type": "conversation",
+      "start_time": "2025-06-30T16:09:01.151998",
+      "end_time": null,
+      "is_active": true,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 3
+    },
+    "episode_4957efd7b7c742c88d50964f3bd299ba": {
+      "file": "./data/memory/episodes/episode_20250630_160909_episode_4957efd7b7c742c88d50964f3bd299ba.json",
+      "title": "Chat: 16:06:47.353 websocket.js:46 [HMR] connected\n16:06...",
+      "type": "task_completion",
+      "start_time": "2025-06-30T16:09:09.834706",
+      "end_time": null,
+      "is_active": true,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 3
+    },
+    "episode_8d683271797149b68d0ce846e602de7e": {
+      "file": "./data/memory/episodes/episode_20250630_160919_episode_8d683271797149b68d0ce846e602de7e.json",
+      "title": "Chat: https://www.youtube.com/watch?v=tzRvcTEapzo...",
+      "type": "conversation",
+      "start_time": "2025-06-30T16:09:19.390813",
+      "end_time": null,
+      "is_active": true,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 2
+    },
+    "episode_73156ddefb974dcf89b741b719054c8b": {
+      "file": "./data/memory/episodes/episode_20250630_161051_episode_73156ddefb974dcf89b741b719054c8b.json",
+      "title": "Chat: 16:09:51.387 websocket.js:46 [HMR] connected\n16:09...",
+      "type": "task_completion",
+      "start_time": "2025-06-30T16:10:51.602205",
+      "end_time": null,
+      "is_active": true,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 3
+    },
+    "episode_f97b4aa5d2374d4cb0b739a27ce43029": {
+      "file": "./data/memory/episodes/episode_20250630_161103_episode_f97b4aa5d2374d4cb0b739a27ce43029.json",
+      "title": "Chat: https://www.youtube.com/watch?v=tzRvcTEapzo...",
+      "type": "conversation",
+      "start_time": "2025-06-30T16:11:03.730747",
+      "end_time": null,
+      "is_active": true,
+      "participants": [
+        "user",
+        "assistant"
+      ],
+      "event_count": 2
+    }
+  },
+  "sessions": {
+    "8291448b-fdef-4d67-bf45-676d5140642c": [
+      "episode_a5b248f057a043f790d423ef2445850c",
+      "episode_4957efd7b7c742c88d50964f3bd299ba",
+      "episode_8d683271797149b68d0ce846e602de7e"
+    ],
+    "a9c62637-6205-49b4-a0fc-a246c2d7e8be": [
+      "episode_73156ddefb974dcf89b741b719054c8b"
+    ],
+    "982b5638-8611-4c6d-98e4-a8500b55d3f2": [
+      "episode_f97b4aa5d2374d4cb0b739a27ce43029"
+    ]
+  },
+  "patterns": {},
+  "metadata": {
+    "created_at": "2025-06-30T16:06:27.114008",
+    "last_updated": "2025-06-30T16:11:03.732025"
+  }
+}

@@ -3,7 +3,7 @@
   "type": "conversation",
   "title": "Chat: https://www.youtube.com/watch?v=0f7H6oq-Vqg...",
   "start_time": "2025-06-18T14:52:37.384173",
-  "end_time": null,
+  "end_time": "2025-07-01T12:23:22.127256",
   "participants": [
     "user",
     "assistant"
@@ -47,9 +47,11 @@
       "impact_score": 0.6
     }
   ],
-  "outcome": null,
+  "outcome": "auto_closed",
   "success_metrics": {},
-  "memories_created": [],
+  "memories_created": [
+    "ltm_d8a833f5866a4852abfe9523d1a6b218"
+  ],
   "metadata": {
     "auto_close_timeout": 7200.0,
     "session_id": "70b8bde8-2fe8-4eb7-92de-89f441b09d90"

@@ -1,0 +1,46 @@
+{
+  "id": "episode_f97b4aa5d2374d4cb0b739a27ce43029",
+  "type": "conversation",
+  "title": "Chat: https://www.youtube.com/watch?v=tzRvcTEapzo...",
+  "start_time": "2025-06-30T16:11:03.730747",
+  "end_time": null,
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "982b5638-8611-4c6d-98e4-a8500b55d3f2",
+    "thread_id": null,
+    "initial_message": "https://www.youtube.com/watch?v=tzRvcTEapzo"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-30T16:11:03.730769",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: https://www.youtube.com/watch?v=tzRvcTEapzo...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-30T16:11:03.731884",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "https://www.youtube.com/watch?v=tzRvcTEapzo"
+      },
+      "impact_score": 0.5
+    }
+  ],
+  "outcome": null,
+  "success_metrics": {},
+  "memories_created": [],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "982b5638-8611-4c6d-98e4-a8500b55d3f2"
+  }
+}

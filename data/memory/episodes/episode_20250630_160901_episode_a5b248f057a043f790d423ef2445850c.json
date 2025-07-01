@@ -1,0 +1,58 @@
+{
+  "id": "episode_a5b248f057a043f790d423ef2445850c",
+  "type": "conversation",
+  "title": "Chat: hello...",
+  "start_time": "2025-06-30T16:09:01.151998",
+  "end_time": null,
+  "participants": [
+    "user",
+    "assistant"
+  ],
+  "context": {
+    "session_id": "8291448b-fdef-4d67-bf45-676d5140642c",
+    "thread_id": null,
+    "initial_message": "hello"
+  },
+  "events": [
+    {
+      "timestamp": "2025-06-30T16:09:01.152431",
+      "event_type": "episode_start",
+      "actor": "system",
+      "action": "started_episode",
+      "data": {
+        "title": "Chat: hello...",
+        "type": "conversation"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-30T16:09:01.154772",
+      "event_type": "user_message",
+      "actor": "user",
+      "action": "sent_message",
+      "data": {
+        "content": "hello"
+      },
+      "impact_score": 0.5
+    },
+    {
+      "timestamp": "2025-06-30T16:09:05.411293",
+      "event_type": "assistant_response",
+      "actor": "assistant",
+      "action": "sent_response",
+      "data": {
+        "content": "I apologize, but I notice that the YouTube URL you provided appears to be incomplete or malformed (it has \"Available Context\" attached to it). Could you please share just the clean YouTube video URL you'd like me to analyze? It should look something like this:\n\n`https://www.youtube.com/watch?v=XXXXXXXXXX`\n\nOnce you share the correct URL, I'll be happy to:\n- Analyze the video content\n- Provide relevant summaries and insights\n- Answer any specific questions you have about the video\n\nPlease share the video URL you'd like to discuss!",
+        "memories_used": 1,
+        "context_tokens": 0
+      },
+      "impact_score": 0.6
+    }
+  ],
+  "outcome": null,
+  "success_metrics": {},
+  "memories_created": [],
+  "metadata": {
+    "auto_close_timeout": 7200.0,
+    "session_id": "8291448b-fdef-4d67-bf45-676d5140642c"
+  }
+}
